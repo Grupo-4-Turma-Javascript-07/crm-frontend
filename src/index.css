@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@200..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+
+  --color-branco: #ffff;
+
+  --color-preto: #000;
+
+  --color-cinza: #0e0e0e;
+
+  --color-azul-100: #0067e9;
+  --color-azul-200: #05499f;
+
+  --color-roxo-50: #981c9d;
+  --color-roxo-100: #8c52ff;
+  --color-roxo-200: #352060;
+
+  --color-rosa-100: #e65395;
+  --color-rosa-200: #c60f61;
+  
+  --font-family-Source: "Source Sans 3", sans-serif;
+}
+
+html {
+  @apply scroll-smooth;
+}
+
+body {
+  background-color: var(--color-cinza);
+  font-family: var(--font-family-Source);
+  font-weight: 400;
+  color: #fff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-Source);
+  font-weight: 700;;
+}
