@@ -2,13 +2,14 @@ import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { api } from "../services/Service";
 
   interface Categoria {
-    id: number;
     categoria: string;
-    descricao: string;
+    id: number;
+    nome: string;
+    produtos: string;
   }
 
   const estadoInicialForm = {
-    descricao: "",
+    nome: "",
     categoria: "",
   };
 
@@ -31,8 +32,8 @@ import { api } from "../services/Service";
       const res = await api.get("/categoria");
       console.log("Categorias recebidas:", res.data);
       setCategorias(res.data);
-    } catch {
-      setError("error ao buscar informações");
+    } catch (error) { 
+      setError(`${error}`);
     } finally {
       setLoading(false);
     }
@@ -41,7 +42,7 @@ import { api } from "../services/Service";
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
 
-    if (!formData.categoria.trim() || !formData.descricao.trim()) {
+    if (!formData.categoria.trim() || !formData.nome.trim()) {
       alert("Por favor preencha todos os campos");
       return;
     }
@@ -68,7 +69,7 @@ import { api } from "../services/Service";
     setCategoriaEmEdicao(categoria);
     setFormData({
       categoria: categoria.categoria,
-      descricao: categoria.descricao,
+      nome: categoria.nome,
     });
   }
 
@@ -120,15 +121,15 @@ import { api } from "../services/Service";
           </div>
           <div>
             <label
-              htmlFor="descricao"
+              htmlFor="nome"
               className="block text-sm font-medium text-slate-800 mb-1"
             >
               Descrição
             </label>
             <textarea
-              id="descricao"
-              name="descricao"
-              value={formData.descricao}
+              id="nome"
+              name="nome"
+              value={formData.nome}
               onChange={handleInputChange}
               className="block w-full bg-slate-50 border border-slate-300 rounded-md shadow-sm p-3 text-slate-800
                         focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -182,7 +183,7 @@ import { api } from "../services/Service";
                 <span className="font-semibold text-slate-800">
                   {cat.categoria}
                 </span>
-                <p className="text-sm text-slate-600">{cat.descricao}</p>
+                <p className="text-sm text-slate-600">{cat.nome}</p>
               </div>
 
               <div className="flex space-x-2 self-end sm:self-center">
