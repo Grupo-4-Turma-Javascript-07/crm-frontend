@@ -1,6 +1,8 @@
+import Categoria from "./ components/categoria/Categoria"
+
 function App() {
   return (
-    <div>App</div>
+      <Categoria/>
   )
 }
 
