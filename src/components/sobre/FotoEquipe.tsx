@@ -17,10 +17,10 @@ function FotoEquipe({ src, alt, github }: FotoEquipeProps) {
         <img
           src={src}
           alt={alt}
-          className="rounded-full w-24 h-24 object-cover border-1 border-purple-500 shadow-lg hover:shadow-purple-700 transition"
+          className="rounded-full w-24 h-24 object-cover border-1 border-purple-700 shadow-lg hover:shadow-purple-700 transition"
         />
       </a>
-      <span className="mt-2 text-center text-purple-700 font-semibold">
+      <span className="mt-2 text-center text-roxo-100 font-semibold">
         {alt}
       </span>
     </div>

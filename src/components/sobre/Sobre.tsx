@@ -12,22 +12,29 @@ import "../../index.css";
 
 function Sobre() {
   return (
-   <section className="bg-gray-900 text-white font-sans px-6 py-16 text-center">
-    <h1 className="text-2xl text-center font-bold text-purple-400 mb-6 hover:text-purple-600 hover:scale-105 transition-transform duration-300">
-         Sobre a CRM4U
+   <section className="bg-cinza text-white font-sans px-6 py-16 text-center">
+    <h1 className="block text-4xl font-semibold text-roxo-100 mb-10 transition-colors group-focus-within:text-roxo-100">
+         Sobre Nós
       </h1>
-    <div className="flex flex-col md:flex-row max-w-6xl mx-auto gap-8 px-6"> 
+    <div className="flex flex-col sm:flex-col md:flex-row lg:flex-row max-w-6xl mx-auto gap-4 sm:gap-6 md:gap-8 px-4 sm:px-6 md:items-center"> 
     <img
-    src={CRM4ULOGO}
-    alt="Logo CRM4U"
-    className="mx-auto h-40 w-auto gap-6 mb-8"
-  />
+        src={CRM4ULOGO}
+        alt="Logo CRM4U"
+        className="mx-auto md:mx-0 h-32 sm:h-36 md:h-40 w-auto mb-6 sm:mb-8 md:mb-0 flex-shrink-0"
+    />
       <p className="text-justify text-lg leading-relaxed max-w-3xl mx-auto mb-10">
-        Na <span className="text-pink-400 font-sans-serif">CRM4U</span>, desenvolvemos soluções inteligentes para transformar a forma como empresas se conectam com seus clientes. Nosso sistema de CRM foi criado para resolver os desafios reais do dia a dia: falta de organização, perda de oportunidades, ausência de histórico de atendimentos e falhas na comunicação interna. Com uma plataforma intuitiva e completa, centralizamos informações, automatizamos processos e facilitamos a gestão de produtos, categorias e equipes. Tudo isso com o objetivo de aumentar a produtividade e fortalecer o relacionamento com o cliente. Somos apaixonados por inovação, eficiência e resultados. Mais do que tecnologia, entregamos parceria para o crescimento sustentável dos nossos clientes.
+        Na <span className="text-roxo-100 font-sans-serif">CRM4U</span>, desenvolvemos soluções inteligentes para transformar a forma como empresas se conectam com seus clientes.
+         <p className="mb-2">
+          Nosso sistema de CRM foi criado para resolver os desafios reais do dia a dia: falta de organização, perda de oportunidades, ausência de histórico de atendimentos e falhas na comunicação interna. Com uma plataforma intuitiva e completa, centralizamos informações, automatizamos processos e facilitamos a gestão de produtos, categorias e equipes. 
+         </p>
+         <p className="mb-2">
+         Tudo isso com o objetivo de aumentar a produtividade e fortalecer o relacionamento com o cliente. 
+         Somos apaixonados por inovação, eficiência e resultados. Mais do que tecnologia, entregamos parceria para o crescimento sustentável dos nossos clientes.
+        </p>
         </p>
         </div>
       {/* Caixas de Missão, Visão e Valores */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto text-left">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-10 text-left">
         {/* Missão */}
         <div className="bg-gray-900 border border-purple-700 rounded-xl p-6 shadow-lg hover:shadow-purple-700 transition">
           <h2 className="text-xl text-center font-semibold text-purple-400 mb-3">Missão</h2>
@@ -53,7 +60,7 @@ function Sobre() {
         </div>
       </div>
 
-       <h1 className="text-2xl font-bold text-purple-400 mb-6">Nossa Equipe:</h1>
+       <h1 className="text-4xl font-bold text-roxo-100 mb-10">Nossa Equipe:</h1>
 
 <div className="flex flex-col md:flex-row max-w-6xl mx-auto gap-8 px-6">
   {/* Coluna esquerda: fotos em grid */}

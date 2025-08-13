@@ -1,10 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@200..900&display=swap');
 @import "tailwindcss";
 
-:root {
-
-/* Variáveis personalizadas */
-:root {
+@theme {
   --color-branco: #ffff;
   --color-preto: #000;
   --color-cinza: #0e0e0e;
@@ -37,5 +34,4 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-family-Source);
   font-weight: 700;
-}
 }
