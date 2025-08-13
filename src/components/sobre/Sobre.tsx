@@ -9,20 +9,12 @@ import fotomaria from "../../assets/img/fotomaria.png";
 import fotomelissa from "../../assets/img/fotomelissa.png";
 import fotovanessa from "../../assets/img/fotovanessa.png";
 import "../../index.css";
-//import { Link } from "react-router-dom";
 
 function Sobre() {
   return (
    <section className="bg-gray-900 text-white font-sans px-6 py-16 text-center">
     <h1 className="text-2xl text-center font-bold text-purple-400 mb-6 hover:text-purple-600 hover:scale-105 transition-transform duration-300">
          Sobre a CRM4U
-
-     {/* <div className="flex justify-center mt-4">
-        <Link to="/" className="text-purple-500 hover:text-purple-300 transition">
-          Voltar para a Home
-        </Link>
-      </div>*/}
-
       </h1>
     <div className="flex flex-col md:flex-row max-w-6xl mx-auto gap-8 px-6"> 
     <img
