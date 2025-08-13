@@ -124,7 +124,7 @@ function Categoria() {
       {/* Card do Formulário */}
       <div className="bg-cinza border border-roxo-200/30 p-8 rounded-xl shadow-2xl mb-8 backdrop-blur-sm">
         <h2 className="text-3xl font-bold text-branco mb-8 text-center">
-          {categoriaEmEdicao ? "✏️ Editar Categoria" : "➕ Nova Categoria"}
+          {categoriaEmEdicao ? "Editar Categoria" : "➕ Nova Categoria"}
         </h2>
 
         <div onSubmit={handleSubmit} className="space-y-6">
@@ -153,7 +153,7 @@ function Categoria() {
                         focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-roxo-100
                         transition-all duration-300 transform hover:scale-105"
             >
-              {categoriaEmEdicao ? "💾 Salvar Alterações" : "✨ Adicionar Categoria"}
+              {categoriaEmEdicao ? "Salvar Alterações" : "Adicionar Categoria"}
             </button>
             
             {categoriaEmEdicao && (
@@ -174,7 +174,7 @@ function Categoria() {
       {/* Lista de Categorias */}
       <div className="bg-cinza border border-roxo-200/30 p-8 rounded-xl shadow-2xl backdrop-blur-sm">
         <h2 className="text-3xl font-bold text-branco mb-8 text-center">
-          📁 Categorias ({categorias.length})
+          Categorias ({categorias.length})
         </h2>
 
         {categorias.length === 0 ? (

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import CRM4ULOGO from '../../assets/img/CRM4ULOGO.png';
+
 
 function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -44,12 +46,12 @@ function Navbar() {
               onClick={handleLogoClick}
               className="flex items-center space-x-3 hover:opacity-80 transition-all duration-300 group"
             >
-              <div className="w-10 h-10 bg-gradient-to-r from-roxo-100 to-rosa-100 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <span className="text-branco font-bold text-lg">C</span>
-              </div>
-              <span className="text-branco text-2xl font-bold bg-gradient-to-r from-roxo-100 to-rosa-100 bg-clip-text text-green">
-                CRM4U
-              </span>
+                {/* Substituir pelo logo real */}
+        <div className="container flex items-center justify-between w-full">
+            <div className="flex flex-1 justify-start">
+                <img src={CRM4ULOGO} width={112} className="cursor-pointer" alt="Logo CRM4U" />
+            </div>
+        </div>
             </button>
           </div>
 
@@ -157,7 +159,7 @@ function Navbar() {
                 }}
                 className="text-gray-300 hover:text-roxo-100 block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-all duration-300 hover:bg-roxo-200/20"
               >
-                🏠 Home
+                Home
               </button>
               <button
                 onClick={() => {
@@ -166,7 +168,7 @@ function Navbar() {
                 }}
                 className="text-gray-300 hover:text-roxo-100 block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-all duration-300 hover:bg-roxo-200/20"
               >
-                📁 Categorias
+                Categorias
               </button>
               <button
                 onClick={() => {
@@ -175,7 +177,7 @@ function Navbar() {
                 }}
                 className="text-gray-300 hover:text-roxo-100 block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-all duration-300 hover:bg-roxo-200/20"
               >
-                📦 Produtos
+                Produtos
               </button>
               <button
                 onClick={() => {
