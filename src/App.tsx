@@ -1,6 +1,11 @@
+import ProdutoCrud from "./components/Produto"
+
 function App() {
   return (
-    <div>App</div>
+    <div>
+      <ProdutoCrud />
+
+    </div>
   )
 }
 
