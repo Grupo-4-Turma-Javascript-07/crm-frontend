@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@200..900&display=swap');
-
-/* Diretivas do Tailwind */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss"
 
 /* Variáveis personalizadas */
 :root {
