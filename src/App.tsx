@@ -1,4 +1,5 @@
 
+import Sobre from "./components/sobre/Sobre"
 import Categoria from "./ components/categoria/Categoria"
 import Footer from "./ components/footer/Footer"
 import Navbar from "./ components/navbar/Navbar"
@@ -25,6 +26,7 @@ function App() {
           <Route path="/cadastro" element={<Cadastro />} />
           <Route path="/categoria" element={<Categoria />} />
           <Route path="/help" element={<Help />} />
+          <Route path="/help" element={<<Sobre/> />} />
         </Routes>
         <ToastContainer theme="colored" />
       </AuthProvider>

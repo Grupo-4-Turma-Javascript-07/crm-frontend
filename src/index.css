@@ -33,7 +33,6 @@
 
 @theme {
   --color-branco: #ffff;
-
   --color-preto: #000;
   --color-cinza: #0e0e0e;
   --color-azul-100: #0067e9;
@@ -45,10 +44,11 @@
 
   --color-rosa-100: #e65395;
   --color-rosa-200: #c60f61;
-  
+
   --font-family-Source: "Source Sans 3", sans-serif;
 }
 
+/* Estilizações globais */
 html {
   @apply scroll-smooth;
 }
