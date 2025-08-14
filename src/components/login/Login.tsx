@@ -7,7 +7,12 @@ const Login: React.FC = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-stretch text-white font-family-Source">
+    <section className="min-h-screen flex items-stretch text-white font-family-Source relative">
+  <button
+    onClick={() => window.location.href = "/"}
+    className="absolute top-4 right-4 flex items-center gap-2 text-white px-4 py-2 hover:text-roxo-100 transition z-50 cursor-pointer"
+  >Home
+  </button>
       <div
         className="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover bg-center relative items-center"
         style={{
@@ -64,7 +69,7 @@ const Login: React.FC = () => {
                 className="block w-full p-4 text-lg rounded-sm bg-black"
               />
             </div>
-            <div className="text-right text-gray-400 hover:underline hover:text-gray-100">
+            <div className="text-right text-gray-400 hover:underline hover:text-roxo-100">
               <a href="#">Esqueceu a senha?</a>
             </div>
             <div className="px-4 pb-2 pt-4">

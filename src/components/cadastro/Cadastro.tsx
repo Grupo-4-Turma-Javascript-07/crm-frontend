@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../assets/img/CRM4ULOGO.png"
 
 const Cadastro: React.FC = () => {
+  const [photoUrl, setPhotoUrl] = useState("");
+
   const handleLoginClick = () => {
     window.location.href = "/login";
   };
@@ -47,6 +49,7 @@ const Cadastro: React.FC = () => {
               Já tem conta? Clique aqui para entrar!
             </button>
           </div>
+
           <form className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
             <div className="pb-2 pt-4">
               <input
@@ -83,6 +86,27 @@ const Cadastro: React.FC = () => {
                 placeholder="Confirmar senha"
                 className="block w-full p-4 text-lg rounded-sm bg-black"
               />
+            </div>
+
+            <div className="pb-2 pt-4">
+              <input
+                type="url"
+                name="photoUrl"
+                id="photoUrl"
+                placeholder="Link da foto de perfil"
+                value={photoUrl}
+                onChange={(e) => setPhotoUrl(e.target.value)}
+                className="block w-full p-4 text-lg rounded-sm bg-black"
+              />
+              {photoUrl && (
+                <div className="mt-4 flex justify-center">
+                  <img
+                    src={photoUrl}
+                    alt="Pré-visualização"
+                    className="w-24 h-24 rounded-full object-cover border-2 border-roxo-100"
+                  />
+                </div>
+              )}
             </div>
             <div className="pb-2 pt-4">
             </div>
