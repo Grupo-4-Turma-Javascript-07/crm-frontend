@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Logo from "../../assets/img/CRM4ULOGO.png"
 import { Link } from "react-router-dom";
@@ -5,7 +6,7 @@ import { ListIcon} from "@phosphor-icons/react";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
-  const [openSearchInput, setOpenSearchInput] = useState(false);
+  const [openSearchInput] = useState(false);
 
   return (
     <nav className="bg-cinza-50 flex items-center justify-center drop-shadow-sm py-1.5 px-6 fixed w-full z-1000">

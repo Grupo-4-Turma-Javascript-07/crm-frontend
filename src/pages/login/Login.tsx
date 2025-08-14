@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CRM4ULOGO from "/src/assets/img/CRM4ULOGO.png";

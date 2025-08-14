@@ -1,5 +1,6 @@
 import { useState } from "react";
 import CRM4ULOGO from '../../assets/img/CRM4ULOGO.png';
+import { Link } from "react-router-dom";
 
 
 function Navbar() {
@@ -62,19 +63,27 @@ function Navbar() {
                 onClick={() => handleNavClick("/")}
                 className="text-gray-300 hover:text-roxo-100 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-roxo-200/20"
               >
-                🏠 Home
+                Home
               </button>
               <button
                 onClick={() => handleNavClick("/categorias")}
                 className="text-gray-300 hover:text-roxo-100 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-roxo-200/20"
               >
-                📁 Categorias
+                Categorias
               </button>
               <button
                 onClick={() => handleNavClick("/produtos")}
                 className="text-gray-300 hover:text-roxo-100 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-roxo-200/20"
               >
-                📦 Produtos
+                Produtos
+              </button>
+              <button>
+            <Link
+            to="/login"
+            className="px-4 py-2 hover:bg-roxo-100 hover:text-white hover:border-roxo-100 transition-all duration-300 border-1 rounded-4xl cursor-pointer text-white"
+            >
+              Login
+              </Link>
               </button>
             </div>
           </div>
