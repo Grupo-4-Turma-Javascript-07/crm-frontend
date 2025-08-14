@@ -1,4 +1,12 @@
-# 📱 CRM Frontend
+# 📱 CRM Frontend  
+<div align="center">
+  <img src="https://img.shields.io/badge/React-Componentes_Intuitivos-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React Badge" />
+  <img src="https://img.shields.io/badge/TypeScript-Tipos_Fortes-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript Badge" />
+  <img src="https://img.shields.io/badge/TailwindCSS-Estilo_Moderno-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind Badge" />
+  <img src="https://img.shields.io/badge/Axios-Requisições_Fáceis-5A29E4?style=for-the-badge&logo=axios&logoColor=white" alt="Axios Badge" />
+  <img src="https://img.shields.io/badge/Context_API-Gerenciamento_Eficiente-FBBF24?style=for-the-badge&logo=react&logoColor=white" alt="Context API Badge" />
+</div>  
+
 Projeto frontend de um sistema CRM com autenticação JWT, interface responsiva, e funcionalidades completas de CRUD com gerenciamento de produtos, categorias e usuários.  
 
 ## ✅ Objetivo e Modelo de Negócio
