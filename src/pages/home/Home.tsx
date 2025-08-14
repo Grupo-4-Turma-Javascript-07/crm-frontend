@@ -17,21 +17,55 @@ export default function Home() {
 
   if (!user) return <div className="text-white p-8">Carregando...</div>;
 
+  // ==============================
+  // Lógica do painel Afazeres
+  // ==============================
+  const addAfazer = () => {
+    if (!newTask.trim()) return;
+    const updated = editingIndex !== null
+      ? [...(user.afazeres ?? [])]
+      : [...(user.afazeres ?? []), newTask];
+
+    if (editingIndex !== null) {
+      updated[editingIndex] = newTask;
+    }
+
+    setUser({ ...user, afazeres: updated });
+    setEditingIndex(null);
+    setNewTask('');
+  };
+
+  const editAfazer = (index: number) => {
+    setNewTask(user.afazeres[index]);
+    setEditingIndex(index);
+  };
+
+  const deleteAfazer = (index: number) => {
+    setUser({
+      ...user,
+      afazeres: user.afazeres.filter((_, i) => i !== index),
+    });
+  };
+
+  // ==============================
+  // Lógica do modal
+  // ==============================
   const addTask = () => {
     if (!newTask.trim()) return;
 
-    if (modalType === 'afazeres') {
-      const updatedTasks = editingIndex !== null ? [...(user.afazeres ?? [])] : [...(user.afazeres ?? []), newTask];
-      if (editingIndex !== null) updatedTasks[editingIndex] = newTask;
-      setUser({ ...user, afazeres: updatedTasks });
-    } else if (modalType === 'solicitacoes') {
-      const updatedTasks = editingIndex !== null ? [...(user.solicitacoes ?? [])] : [...(user.solicitacoes ?? []), newTask];
-      if (editingIndex !== null) updatedTasks[editingIndex] = newTask;
-      setUser({ ...user, solicitacoes: updatedTasks });
+    if (modalType === 'solicitacoes') {
+      const updated = editingIndex !== null ? [...(user.solicitacoes ?? [])] : [...(user.solicitacoes ?? []), newTask];
+      if (editingIndex !== null) updated[editingIndex] = newTask;
+      setUser({ ...user, solicitacoes: updated });
     } else if (modalType === 'atividades') {
-      const updatedTasks = editingIndex !== null ? [...(user.atividades ?? [])] : [...(user.atividades ?? []), newTask];
-      if (editingIndex !== null) updatedTasks[editingIndex] = newTask;
-      setUser({ ...user, atividades: updatedTasks });
+      const updated = editingIndex !== null ? [...(user.atividades ?? [])] : [...(user.atividades ?? []), newTask];
+      if (editingIndex !== null) updated[editingIndex] = newTask;
+      setUser({ ...user, atividades: updated });
+    } else if (modalType === 'afazeres') {
+      // Afazeres no modal
+      const updated = editingIndex !== null ? [...(user.afazeres ?? [])] : [...(user.afazeres ?? []), newTask];
+      if (editingIndex !== null) updated[editingIndex] = newTask;
+      setUser({ ...user, afazeres: updated });
     }
 
     setEditingIndex(null);
@@ -39,15 +73,23 @@ export default function Home() {
   };
 
   const deleteTask = (index: number) => {
-    if (modalType === 'afazeres') setUser({ ...user, afazeres: user.afazeres.filter((_, i) => i !== index) });
-    else if (modalType === 'solicitacoes') setUser({ ...user, solicitacoes: user.solicitacoes.filter((_, i) => i !== index) });
-    else if (modalType === 'atividades') setUser({ ...user, atividades: (user.atividades ?? []).filter((_, i) => i !== index) });
+    if (modalType === 'solicitacoes') {
+      setUser({ ...user, solicitacoes: user.solicitacoes.filter((_, i) => i !== index) });
+    } else if (modalType === 'atividades') {
+      setUser({ ...user, atividades: (user.atividades ?? []).filter((_, i) => i !== index) });
+    } else if (modalType === 'afazeres') {
+      setUser({ ...user, afazeres: user.afazeres.filter((_, i) => i !== index) });
+    }
   };
 
   const editTask = (index: number) => {
-    if (modalType === 'afazeres') setNewTask(user.afazeres[index]);
-    else if (modalType === 'solicitacoes') setNewTask(user.solicitacoes[index]);
-    else if (modalType === 'atividades') setNewTask(user.atividades?.[index] ?? '');
+    if (modalType === 'solicitacoes') {
+      setNewTask(user.solicitacoes[index]);
+    } else if (modalType === 'atividades') {
+      setNewTask(user.atividades?.[index] ?? '');
+    } else if (modalType === 'afazeres') {
+      setNewTask(user.afazeres[index]);
+    }
     setEditingIndex(index);
     setModalOpen(true);
   };
@@ -64,60 +106,49 @@ export default function Home() {
   return (
     <div className="flex min-h-screen font-sans bg-[#121212]">
       {/* Sidebar */}
-    <aside className={`bg-[#191a1f] p-6 flex flex-col justify-between transition-all duration-300 ${menuOpen ? 'w-64' : 'w-16'} pt-24`}>
-      <div>
-        {/* Botão para abrir/fechar menu */}
-        <button
-          className="text-gray-400 mb-6 focus:outline-none cursor-pointer hover:text-purple-500"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
+      <aside className={`bg-[#191a1f] p-6 flex flex-col justify-between transition-all duration-300 ${menuOpen ? 'w-64' : 'w-16'} pt-24`}>
+        <div>
+          <button
+            className="text-gray-400 mb-6 focus:outline-none cursor-pointer hover:text-purple-500"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
             <div className='flex items-center gap-2'>
               <FiMenu size={iconSize} /> {menuOpen && <span>Menu</span>}
-          </div>
-        </button>
-
-        {/* Menu principal */}
-        <nav className="flex flex-col gap-4 text-gray-300 font-semibold">
-          <a href="#" className="flex items-center gap-3 hover:text-purple-500">
-            <AiFillHome size={iconSize} /> {menuOpen && <span>Home</span>}
-          </a>
-
-          <a href="#" className="flex items-center gap-3 hover:text-purple-500 font-bold">
-            <AiOutlineShoppingCart size={iconSize} /> {menuOpen && <span>Produtos</span>}
-          </a>
-
-          <button
-            className="flex items-center gap-3 hover:text-purple-500 font-bold focus:outline-none"
-            onClick={() => openModal('clientes')}
-          >
-            <AiOutlineTeam size={iconSize} /> {menuOpen && <span>Clientes</span>}
+            </div>
           </button>
-
+          <nav className="flex flex-col gap-4 text-gray-300 font-semibold">
+            <a href="#" className="flex items-center gap-3 hover:text-purple-500">
+              <AiFillHome size={iconSize} /> {menuOpen && <span>Home</span>}
+            </a>
+            <a href="#" className="flex items-center gap-3 hover:text-purple-500 font-bold">
+              <AiOutlineShoppingCart size={iconSize} /> {menuOpen && <span>Produtos</span>}
+            </a>
+            <button className="flex items-center gap-3 hover:text-purple-500 font-bold focus:outline-none cursor-pointer" onClick={() => openModal('clientes')}>
+              <AiOutlineTeam size={iconSize} /> {menuOpen && <span>Clientes</span>}
+            </button>
+            <a href="#" className="flex items-center gap-3 hover:text-purple-500">
+              <AiOutlineTag size={iconSize} /> {menuOpen && <span>Categorias</span>}
+            </a>
+            <a href="#" className="flex items-center gap-3 hover:text-purple-500">
+              <AiOutlineTeam size={iconSize} /> {menuOpen && <span>Funcionários</span>}
+            </a>
+          </nav>
+        </div>
+        <div className="flex flex-col gap-4 text-gray-400">
           <a href="#" className="flex items-center gap-3 hover:text-purple-500">
-            <AiOutlineTag size={iconSize} /> {menuOpen && <span>Categorias</span>}
+            <BiBuilding size={iconSize} /> {menuOpen && <span>Sobre a Empresa</span>}
           </a>
-
-          <a href="#" className="flex items-center gap-3 hover:text-purple-500">
-            <AiOutlineTeam size={iconSize} /> {menuOpen && <span>Funcionários</span>}
+          <a href="/Help" className="flex items-center gap-3 hover:text-purple-500">
+            <BiHelpCircle size={iconSize} /> {menuOpen && <span>Central de Ajuda</span>}
           </a>
-        </nav>
-      </div>
+        </div>
+      </aside>
 
-      {/* Menu inferior */}
-      <div className="flex flex-col gap-4 text-gray-400">
-        <a href="#" className="flex items-center gap-3 hover:text-purple-500">
-          <BiBuilding size={iconSize} /> {menuOpen && <span>Sobre a Empresa</span>}
-        </a>
-        <a href="/Help" className="flex items-center gap-3 hover:text-purple-500">
-          <BiHelpCircle size={iconSize} /> {menuOpen && <span>Central de Ajuda</span>}
-        </a>
-      </div>
-    </aside>
       {/* Conteúdo */}
       <div className="flex-1 flex flex-col">
         <header className="fixed top-0 left-0 w-full flex items-center justify-between bg-[#191a1f] p-4 z-[999]">
           <div className="flex items-center gap-3">
-            <img src="https://cdn.discordapp.com/attachments/1369437328153645093/1404901686274691082/CRM4ULOGO.png?ex=689d88e7&is=689c3767&hm=d27ac9332332ed403c4b9f44d32e632a1e976891f71b60f99ba55ee406630dfb" alt="Logo" className="h-15 w-auto cursor-pointer" />
+            <img src="https://media.discordapp.net/attachments/1369437328153645093/1404901686274691082/CRM4ULOGO.png?ex=689e31a7&is=689ce027&hm=defa6fdca67d988e3a1f856f238578e7e5d97beeee3b9203afb156e562c17a7f&=&format=webp&quality=lossless&width=625&height=295" alt="Logo" className="h-15 w-auto cursor-pointer" />
           </div>
           <div className="relative flex-1 max-w-md mx-auto">
             <input type="text" placeholder="Pesquisar" className="w-full rounded-full border border-gray-700 bg-[#1b1b1b] py-2 pl-10 pr-2 text-sm text-gray-400 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500" />
@@ -149,19 +180,13 @@ export default function Home() {
               </div>
             </section>
 
-            {/* Painel de Afazeres */}
+            {/* Painel Afazeres */}
             <section className="bg-[#2a2a2a] rounded-md">
               <div className="bg-[#222] border-b border-gray-700 text-purple-600 text-center py-1 font-semibold text-xl">Afazeres</div>
               <div className="p-4 flex flex-col gap-3 justify-center items-center">
                 <div className="flex gap-2 w-[1000px]">
                   <input value={newTask} onChange={(e) => setNewTask(e.target.value)} placeholder="Nova tarefa..." className="flex-4 bg-[#1b1b1b] text-gray-300 p-2 rounded-md" />
-                  <button
-                    onClick={addTask}
-                    className="flex-1 inline-flex justify-center items-center py-3 px-6 border border-transparent shadow-lg text-sm font-bold rounded-lg text-white
-                               bg-gradient-to-r from-purple-500 to-pink-400 hover:from-purple-400 hover:to-pink-300
-                               focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500
-                               transition-all duration-300 transform hover:scale-105 cursor-pointer"
-                  >
+                  <button onClick={addAfazer} className="flex-1 inline-flex justify-center items-center py-3 px-6 border border-transparent shadow-lg text-sm font-bold rounded-lg text-white bg-gradient-to-r from-purple-500 to-pink-400 hover:from-purple-400 hover:to-pink-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-300 transform hover:scale-105 cursor-pointer">
                     {editingIndex !== null ? 'Salvar' : 'Adicionar'}
                   </button>
                 </div>
@@ -170,8 +195,8 @@ export default function Home() {
                     <li key={index} className="flex justify-between items-center bg-[#1b1b1b] p-2 rounded-md w-[800px]">
                       <span>{task}</span>
                       <div className="flex gap-2">
-                        <FiEdit2 className="text-yellow-200 hover:text-yellow-500 cursor-pointer" onClick={() => editTask(index)} />
-                        <FiTrash2 className="text-red-300 hover:text-red-500 cursor-pointer" onClick={() => deleteTask(index)} />
+                        <FiEdit2 className="text-yellow-200 hover:text-yellow-500 cursor-pointer" onClick={() => editAfazer(index)} />
+                        <FiTrash2 className="text-red-300 hover:text-red-500 cursor-pointer" onClick={() => deleteAfazer(index)} />
                       </div>
                     </li>
                   ))}
@@ -204,48 +229,27 @@ export default function Home() {
 
             {(modalType === 'afazeres' || modalType === 'solicitacoes' || modalType === 'atividades') && (
               <div className="mb-4 flex gap-2">
-                <input
-                  value={newTask}
-                  onChange={(e) => setNewTask(e.target.value)}
-                  placeholder={`Nova ${modalType === 'afazeres' ? 'tarefa' : modalType === 'atividades' ? 'atividade' : 'solicitação'}...`}
-                  className="flex-4 bg-[#1b1b1b] text-gray-300 p-2 rounded-md"
-                />
-                <button
-                  onClick={addTask}
-                  className="flex-1 inline-flex justify-center items-center py-3 px-6 border border-transparent shadow-lg text-sm font-bold rounded-lg text-white
-                             bg-gradient-to-r from-purple-500 to-pink-400 hover:from-purple-400 hover:to-pink-300
-                             focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500
-                             transition-all duration-300 transform hover:scale-105 cursor-pointer"
-                >
+                <input value={newTask} onChange={(e) => setNewTask(e.target.value)} placeholder={`Nova ${modalType === 'afazeres' ? 'tarefa' : modalType === 'atividades' ? 'atividade' : 'solicitação'}...`} className="flex-4 bg-[#1b1b1b] text-gray-300 p-2 rounded-md" />
+                <button onClick={addTask} className="flex-1 inline-flex justify-center items-center py-3 px-6 border border-transparent shadow-lg text-sm font-bold rounded-lg text-white bg-gradient-to-r from-purple-500 to-pink-400 hover:from-purple-400 hover:to-pink-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-300 transform hover:scale-105 cursor-pointer">
                   {editingIndex !== null ? 'Salvar' : 'Adicionar'}
                 </button>
               </div>
             )}
 
             <ul className="text-gray-300 space-y-2 max-h-[70%] overflow-y-auto">
-              {modalType === 'clientes' &&
-                user.clientes.map((empresa, idx) => (
-                  <li key={idx} className="border-b border-gray-700 py-1">
-                    <span className="font-semibold">{empresa.nome}</span>: {empresa.descricao}
-                  </li>
-                ))}
+              {modalType === 'clientes' && user.clientes.map((empresa, idx) => (
+                <li key={idx} className="border-b border-gray-700 py-1">
+                  <span className="font-semibold">{empresa.nome}</span>: {empresa.descricao}
+                </li>
+              ))}
 
               {(modalType === 'afazeres' || modalType === 'solicitacoes' || modalType === 'atividades') &&
-                (
-                  modalType === 'afazeres'
-                    ? user.afazeres ?? []
-                    : modalType === 'solicitacoes'
-                    ? user.solicitacoes ?? []
-                    : user.atividades ?? []
-                ).map((item, idx) => (
+                (modalType === 'afazeres' ? user.afazeres ?? [] : modalType === 'solicitacoes' ? user.solicitacoes ?? [] : user.atividades ?? []).map((item, idx) => (
                   <li key={idx} className="flex justify-between items-center py-1">
                     <span>{item}</span>
                     <div className="flex gap-2">
                       <FiEdit2 className="text-yellow-200 hover:text-yellow-500 cursor-pointer" onClick={() => editTask(idx)} />
-                      <FiTrash2
-                        className="text-red-300 hover:text-red-600 cursor-pointer"
-                        onClick={() => deleteTask(idx)}
-                      />
+                      <FiTrash2 className="text-red-300 hover:text-red-600 cursor-pointer" onClick={() => deleteTask(idx)} />
                     </div>
                   </li>
                 ))}
