@@ -25,6 +25,7 @@ function Cadastro() {
   const [confirmarSenha, setConfirmarSenha] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [photoUrl, setPhotoUrl] = useState("");
 
   function handleLoginClick() {
     navigate("/login");
@@ -81,10 +82,34 @@ function Cadastro() {
           <div className="absolute bg-black opacity-60 inset-0 z-0"></div>
         </div>
         <div className="w-full py-6 z-20">
-          <h1 className="my-6 flex justify-center items-center">
+          <h1 className="my-4 flex justify-center items-center">
             <img src={Logo} alt="Logo" className="h-28 w-auto" />
           </h1>
           <form className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto" onSubmit={handleSubmit}>
+            <div className="pt-4">
+              {photoUrl && (
+                <div className="mb-4 flex justify-center">
+                  <img
+                    src={photoUrl}
+                    alt="Pré-visualização"
+                    className="w-24 h-24 rounded-full object-cover border-2 border-roxo-100"
+                  />
+                </div>
+              )}
+              <input
+                type="url"
+                name="photoUrl"
+                id="photoUrl"
+                placeholder="Link da foto de perfil (opcional)"
+                value={photoUrl}
+                onChange={(e) => setPhotoUrl(e.target.value)}
+                className="block w-full p-4 text-lg rounded-lg bg-black border border-roxo-200 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-roxo-100 focus:border-roxo-100 transition-all duration-300"
+              />
+              <span className="text-xs text-gray-400 mt-1 block">
+                Dica: Hospede sua imagem em <a href="https://postimages.org" target="_blank" rel="noopener noreferrer" className="underline text-roxo-100">postimages.org</a> ou <a href="https://imgur.com" target="_blank" rel="noopener noreferrer" className="underline text-roxo-100">imgur.com</a> e cole o link aqui.
+              </span>
+
+            </div>
             <div className="pb-2 pt-4">
               <input
                 type="text"
@@ -108,20 +133,6 @@ function Cadastro() {
                 onChange={e => setUsuario({ ...usuario, email: e.target.value })}
                 required
               />
-            </div>
-            <div className="pt-4">
-              <input
-                type="text"
-                name="foto"
-                id="foto"
-                placeholder="URL da foto de perfil (opcional)"
-                className="block w-full p-4 text-lg rounded-lg bg-black border border-roxo-200 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-roxo-100 focus:border-roxo-100 transition-all duration-300"
-                value={usuario.foto}
-                onChange={e => setUsuario({ ...usuario, foto: e.target.value })}
-              />
-              <span className="text-xs text-gray-400 mt-1 block">
-                Dica: Hospede sua imagem em <a href="https://postimages.org" target="_blank" rel="noopener noreferrer" className="underline text-roxo-100">postimages.org</a> ou <a href="https://imgur.com" target="_blank" rel="noopener noreferrer" className="underline text-roxo-100">imgur.com</a> e cole o link aqui.
-              </span>
             </div>
             <div className="pb-2 pt-4">
               <input
