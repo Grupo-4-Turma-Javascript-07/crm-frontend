@@ -48,10 +48,9 @@
   --font-family-Source: "Source Sans 3", sans-serif;
 }
 
-/* Estilizações globais */
-html {
+
   @apply scroll-smooth;
-}
+
 
 body {
   background-color: var(--color-cinza);

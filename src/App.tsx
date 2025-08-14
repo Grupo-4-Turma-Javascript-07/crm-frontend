@@ -1,4 +1,6 @@
 
+import Footer from "./components/footer/Footer"
+import FooterSistema from "./components/footer/FooterSistema"
 import Sobre from "./components/sobre/Sobre"
 import Categoria from "./ components/categoria/Categoria"
 import Footer from "./ components/footer/Footer"
@@ -28,6 +30,8 @@ function App() {
           <Route path="/help" element={<Help />} />
           <Route path="/help" element={<<Sobre/> />} />
         </Routes>
+            <Footer/>
+            <FooterSistema/>
         <ToastContainer theme="colored" />
       </AuthProvider>
     </BrowserRouter>
