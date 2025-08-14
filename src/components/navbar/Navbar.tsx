@@ -60,7 +60,7 @@ function Navbar() {
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
               <button
-                onClick={() => handleNavClick("/home")}
+                onClick={() => handleNavClick("/")}
                 className="text-gray-300 hover:text-roxo-100 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-roxo-200/20"
               >
                 Home
