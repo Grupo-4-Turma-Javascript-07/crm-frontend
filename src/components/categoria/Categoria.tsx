@@ -120,9 +120,9 @@ function Categoria() {
   );
 
   return (
-    <div id="categoria" className="w-full max-w-6xl mx-auto px-4 py-8 mt-20">
+    <div id="categoria" className="min-h-screen w-full max-w-6xl mx-auto px-4 py-8 mt-20">
       {/* Card do Formulário */}
-      <div className="bg-cinza border border-roxo-200/30 p-8 rounded-xl shadow-2xl mb-8 backdrop-blur-sm">
+      <div className="bg-black border-roxo-200/30 p-8 rounded-xl shadow-2xl mb-8 backdrop-blur-sm">
         <h2 className="text-3xl font-bold text-branco mb-8 text-center">
           {categoriaEmEdicao ? "Editar Categoria" : "➕ Nova Categoria"}
         </h2>
@@ -172,7 +172,7 @@ function Categoria() {
       </div>
 
       {/* Lista de Categorias */}
-      <div className="bg-cinza border border-roxo-200/30 p-8 rounded-xl shadow-2xl backdrop-blur-sm">
+      <div className="bg-black border border-roxo-200/30 p-8 rounded-xl shadow-2xl backdrop-blur-sm">
         <h2 className="text-3xl font-bold text-branco mb-8 text-center">
           Categorias ({categorias.length})
         </h2>

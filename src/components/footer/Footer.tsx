@@ -9,7 +9,7 @@ function Footer() {
             CRM4U - Grupo 04 | Copyright: 2025
           </p>
           <p className="text-lg"> Acesse nossas redes sociais</p>
-          <div className="flex space-x-4 mt-2">
+          <div className="flex space-x-4">
             <a href="https://www.linkedin.com/school/generationbrasil/" target="_blank" rel="noopener noreferrer">
               <LinkedinLogoIcon size={48} weight='bold' />
             </a>

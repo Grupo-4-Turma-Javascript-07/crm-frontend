@@ -120,10 +120,10 @@ function ProdutoCrud() {
 
   
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div className="min-h-screen bg-cinza w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       
       
-      <div className="bg-[var(--color-preto)] border border-[var(--color-roxo-200)] rounded-xl shadow-lg mb-10">
+      <div className="bg-[var(--color-preto)] border border-[var(--color-roxo-200)] rounded-xl shadow-lg mt-10 mb-10">
         <div className="border-b border-[var(--color-roxo-200)] px-6 py-4">
             <h2 className="text-xl text-white">
               {produtoEmEdicao ? 'Editar Produto' : 'Adicionar Novo Produto'}
