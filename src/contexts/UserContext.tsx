@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
 
 interface Empresa {
@@ -35,39 +35,6 @@ interface Props {
 
 export function UserProvider({ children }: Props) {
   const [user, setUser] = useState<User | null>(null);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      // Simula delay de API
-      await new Promise(res => setTimeout(res, 500));
-
-      const mockUser: User = {
-        nome: 'Maria Clara',
-        clientes: [
-          { nome: 'Acme Corp', descricao: 'Fornece equipamentos industriais' },
-          { nome: 'Globex Ltda.', descricao: 'Consultoria de tecnologia' },
-          { nome: 'Initech', descricao: 'Desenvolvimento de softwares' },
-          { nome: 'Umbrella Corp.', descricao: 'Produtos farmacêuticos' },
-        ],
-        afazeres: [
-          'Revisar contratos do mês',
-          'Enviar relatório financeiro',
-          'Atualizar base de clientes',
-          'Organizar reunião com parceiros',
-        ],
-        solicitacoes: [
-          'Solicitação de suporte técnico da Acme Corp.',
-          'Pedido de atualização do dashboard da Globex Ltda.',
-          'Requisição de materiais de marketing da Initech',
-          'Solicitação de mudança de plano do cliente Umbrella Corp.',
-        ],
-      };
-
-      setUser(mockUser);
-    };
-
-    fetchUser();
-  }, []);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

@@ -17,9 +17,6 @@ export default function Home() {
 
   if (!user) return <div className="text-white p-8">Carregando...</div>;
 
-  // ==============================
-  // Lógica do painel Afazeres
-  // ==============================
   const addAfazer = () => {
     if (!newTask.trim()) return;
     const updated = editingIndex !== null
@@ -47,9 +44,6 @@ export default function Home() {
     });
   };
 
-  // ==============================
-  // Lógica do modal
-  // ==============================
   const addTask = () => {
     if (!newTask.trim()) return;
 
@@ -216,7 +210,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Modal */}
       {modalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-[1000]">
           <div className="bg-[#2a2a2a] w-3/4 h-3/4 rounded-md p-6 relative overflow-y-auto">

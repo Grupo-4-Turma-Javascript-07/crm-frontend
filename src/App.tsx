@@ -1,5 +1,5 @@
 
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
 import Help from '../src/pages/help/Help'
 import Categoria from "./components/categoria/Categoria"
@@ -12,6 +12,7 @@ import { AuthProvider } from "./contexts/AuthContext"
 import Cadastro from "./pages/cadastro/Cadastro"
 import Home from "./pages/home/Home"
 import Login from "./pages/login/Login"
+import Produto from "./components/produto/Produto"
 
 
 function App() {
@@ -21,10 +22,11 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Navigate to="/" replace />} />
+          <Route path="/home" element= {<Home/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
-          <Route path="/categoria" element={<Categoria />} />
+          <Route path="/categorias" element={<Categoria />} />
+          <Route path="/produtos" element={<Produto />} />
           <Route path="/help" element={<Help />} />
           <Route path="/sobre" element={<Sobre />} />
         </Routes>
