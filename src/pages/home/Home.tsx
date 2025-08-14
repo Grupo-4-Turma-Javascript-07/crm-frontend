@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { AiFillHome, AiOutlineShoppingCart, AiOutlineTag, AiOutlineTeam } from 'react-icons/ai';
 import { BiBuilding, BiHelpCircle } from 'react-icons/bi';
 import { FiBell, FiEdit2, FiMenu, FiSearch, FiSettings, FiTrash2, FiUser, FiX } from 'react-icons/fi';
-import { useUser } from '../../context/UserContext';
+import { useUser } from '../../contexts/UserContext';
 
 export default function Home() {
   const { user, setUser } = useUser();

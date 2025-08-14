@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, type ReactNode, useEffect, useState } from "react"
 import { getCurrentUser, login, logout } from "../services/Service"
 import { ToastAlerta } from "../utils/ToastAlerta"

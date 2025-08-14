@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Logo from "../assets/img/CRM4ULOGO.png";
-import { cadastrarUsuario } from "../services/Service";
-import { ToastAlerta } from "../utils/ToastAlerta";
+import CRM4ULOGO from "../assets/img/CRM4ULOGO.png";
+import { cadastrarUsuario } from "../../services/Service";
+import { ToastAlerta } from "../../utils/ToastAlerta";
 
 interface Usuario {
   nome: string;
@@ -83,7 +84,7 @@ function Cadastro() {
         </div>
         <div className="w-full py-6 z-20">
           <h1 className="my-4 flex justify-center items-center">
-            <img src={Logo} alt="Logo" className="h-28 w-auto" />
+            <img src={CRM4ULOGO} alt="Logo" className="h-28 w-auto" />
           </h1>
           <form className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto" onSubmit={handleSubmit}>
             <div className="pt-4">

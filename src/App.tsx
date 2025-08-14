@@ -2,15 +2,16 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
 import Help from '../src/pages/help/Help'
-import Categoria from "./ components/categoria/Categoria"
-import Navbar from "./ components/navbar/Navbar"
-import Footer from "./components/footer/Footer"
+import Categoria from "./components/categoria/Categoria"
+import Navbar from "./components/navbar/Navbar"
+/* import Footer from "./components/footer/Footer"
+ */
 import FooterSistema from "./components/footer/FooterSistema"
 import Sobre from "./components/sobre/Sobre"
 import { AuthProvider } from "./contexts/AuthContext"
-import Cadastro from "./pages/Cadastro"
-import Home from "./pages/Home"
-import Login from "./pages/Login"
+import Cadastro from "./pages/cadastro/Cadastro"
+import Home from "./pages/home/Home"
+import Login from "./pages/login/Login"
 
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
           <Route path="/help" element={<Help />} />
           <Route path="/sobre" element={<Sobre />} />
         </Routes>
-        <Footer />
+{/*         <Footer /> */}
         <FooterSistema />
         <ToastContainer theme="colored" />
       </AuthProvider>

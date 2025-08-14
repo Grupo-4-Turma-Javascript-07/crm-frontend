@@ -3,7 +3,7 @@ import { AiFillHome, AiOutlineShoppingCart, AiOutlineTag, AiOutlineTeam } from '
 import { BiBuilding, BiHelpCircle } from 'react-icons/bi';
 import { FiBell, FiChevronDown, FiChevronUp, FiMenu, FiSearch, FiSettings, FiUser } from 'react-icons/fi';
 import { Link, useNavigate } from 'react-router-dom';
-import { useUser } from '../../context/UserContext';
+import { useUser } from '../../contexts/UserContext';
 
 export default function Help() {
   const { user } = useUser();
