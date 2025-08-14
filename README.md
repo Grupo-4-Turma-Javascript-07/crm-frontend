@@ -1,4 +1,4 @@
-# 📱 CRM Frontend  
+# 📱 CRM4U Frontend  
 <div align="center">
   <img src="https://img.shields.io/badge/React-Componentes_Intuitivos-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React Badge" />
   <img src="https://img.shields.io/badge/TypeScript-Tipos_Fortes-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript Badge" />
