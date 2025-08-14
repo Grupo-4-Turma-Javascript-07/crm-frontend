@@ -30,7 +30,7 @@ function Inicio() {
               <span className="text-roxo-100">fácil</span> de usar
             </p>
             <div className="flex gap-4 mt-4">
-              <button className="px-4 py-2 hover:bg-roxo-100 hover:text-white hover:border-roxo-100 transition-all duration-300 border-1 rounded-4xl cursor-pointer">
+              <button className="px-4 py-2 hover:bg-roxo-100 text-branco hover:text-white hover:border-roxo-100 transition-all duration-300 border-1 rounded-4xl cursor-pointer">
                 <a href="#cardapio">Teste Grátis</a>
               </button>
               <button className="px-4 py-2 bg-roxo-100 hover:bg-roxo-200 hover:text-white hover:border-roxo-200 transition-all duration-300 rounded-4xl cursor-pointer">
