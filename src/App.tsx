@@ -1,4 +1,5 @@
 
+import Sobre from "./components/inicio/Inicio"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
 import Help from '../src/pages/help/Help'
@@ -13,7 +14,6 @@ import Cadastro from "./pages/cadastro/Cadastro"
 import Home from "./pages/home/Home"
 import Login from "./pages/login/Login"
 import Produto from "./components/produto/Produto"
-
 
 function App() {
   return (
