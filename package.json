@@ -10,9 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@phosphor-icons/react": "github:phosphor-icons/react",
+    "@phosphor-icons/web": "^2.1.2",
     "@tailwindcss/vite": "^4.1.11",
     "axios": "^1.11.0",
     "phosphor-icons": "^1.4.2",
+    "phosphor-react": "^1.4.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.8.0",

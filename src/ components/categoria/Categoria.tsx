@@ -1,26 +1,21 @@
 import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { api } from "../services/Service";
 
-  interface Categoria {
-    categoria: string;
-    id: number;
-    nome: string;
-    produtos: string;
-  }
+interface Categoria {
+  id: number;
+  nome: string;
+}
 
-  const estadoInicialForm = {
-    nome: "",
-    categoria: "",
-  };
+const estadoInicialForm = {
+  nome: "",
+};
 
-  function Categoria() {
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
-    const [categorias, setCategorias] = useState<Categoria[]>([]);
-    const [formData, setFormData] = useState(estadoInicialForm);
-    const [categoriaEmEdicao, setCategoriaEmEdicao] = useState<Categoria | null>(
-      null
-    );
+function Categoria() {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [categorias, setCategorias] = useState<Categoria[]>([]);
+  const [formData, setFormData] = useState(estadoInicialForm);
+  const [categoriaEmEdicao, setCategoriaEmEdicao] = useState<Categoria | null>(null);
 
   useEffect(() => {
     buscarCategorias();
@@ -29,11 +24,17 @@ import { api } from "../services/Service";
   async function buscarCategorias() {
     try {
       setLoading(true);
-      const res = await api.get("/categoria");
+      const token = localStorage.getItem('token');
+      const res = await api.get("/categorias", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log("Categorias recebidas:", res.data);
       setCategorias(res.data);
-    } catch (error) { 
-      setError(`${error}`);
+    } catch (err) {
+      console.error("Erro ao buscar categorias:", err);
+      setError("Erro ao buscar categorias");
     } finally {
       setLoading(false);
     }
@@ -42,33 +43,53 @@ import { api } from "../services/Service";
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
 
-    if (!formData.categoria.trim() || !formData.nome.trim()) {
-      alert("Por favor preencha todos os campos");
+    if (!formData.nome.trim()) {
+      alert("Por favor preencha o nome da categoria");
       return;
     }
 
-    if (categoriaEmEdicao) {
-      await api.put(`/categoria/${categoriaEmEdicao.id}`, formData);
-    } else {
-      await api.post("/categoria", formData);
-    }
+    try {
+      const token = localStorage.getItem('token');
+      const headers = {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      };
 
-    setFormData(estadoInicialForm);
-    setCategoriaEmEdicao(null);
-    buscarCategorias();
+      if (categoriaEmEdicao) {
+        await api.put(`/categorias/${categoriaEmEdicao.id}`, formData, { headers });
+      } else {
+        await api.post("/categorias", formData, { headers });
+      }
+
+      setFormData(estadoInicialForm);
+      setCategoriaEmEdicao(null);
+      buscarCategorias();
+    } catch (err) {
+      console.error("Erro ao salvar categoria:", err);
+      alert("Erro ao salvar categoria");
+    }
   }
 
   async function handleDelete(id: number) {
     if (window.confirm("Tem certeza que deseja excluir esta categoria?")) {
-      await api.delete(`/categoria/${id}`);
-      setCategorias(categorias.filter((cat) => cat.id !== id));
+      try {
+        const token = localStorage.getItem('token');
+        await api.delete(`/categorias/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setCategorias(categorias.filter((cat) => cat.id !== id));
+      } catch (err) {
+        console.error("Erro ao excluir categoria:", err);
+        alert("Erro ao excluir categoria");
+      }
     }
   }
 
   function handleEdit(categoria: Categoria) {
     setCategoriaEmEdicao(categoria);
     setFormData({
-      categoria: categoria.categoria,
       nome: categoria.nome,
     });
   }
@@ -78,9 +99,7 @@ import { api } from "../services/Service";
     setFormData(estadoInicialForm);
   }
 
-  function handleInputChange(
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) {
+  function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -88,121 +107,123 @@ import { api } from "../services/Service";
     }));
   }
 
-  if (loading) return <p>Carregando...</p>;
-  if (error) return <p className="text-red-500">{error}</p>;
+  if (loading) return (
+    <div className="flex items-center justify-center min-h-96">
+      <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-roxo-100"></div>
+    </div>
+  );
+
+  if (error) return (
+    <div className="flex items-center justify-center min-h-96">
+      <p className="text-rosa-100 text-xl">{error}</p>
+    </div>
+  );
 
   return (
-    
-    <div id='categoria' className="w-full max-w-4xl mx-auto px-4 py-8">
-      {/* --- Card do Formulário --- */}
-      <div className="bg-green-100 p-6 sm:p-8 rounded-xl shadow-lg mb-8">
-        <h2 className="text-2xl font-bold text-slate-800 mb-6">
-          {categoriaEmEdicao ? "Editar Categoria" : "Adicionar Nova Categoria"}
+    <div id="categoria" className="w-full max-w-6xl mx-auto px-4 py-8 mt-20">
+      {/* Card do Formulário */}
+      <div className="bg-cinza border border-roxo-200/30 p-8 rounded-xl shadow-2xl mb-8 backdrop-blur-sm">
+        <h2 className="text-3xl font-bold text-branco mb-8 text-center">
+          {categoriaEmEdicao ? "Editar Categoria" : "➕ Nova Categoria"}
         </h2>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label
-              htmlFor="categoria"
-              className="block text-sm font-medium text-slate-800 mb-1"
-            >
+        <div onSubmit={handleSubmit} className="space-y-6">
+          <div className="group">
+            <label className="block text-sm font-semibold text-roxo-100 mb-2 transition-colors group-focus-within:text-roxo-100">
               Nome da Categoria
             </label>
             <input
               type="text"
-              id="categoria"
-              name="categoria"
-              value={formData.categoria}
-              onChange={handleInputChange}
-              className="block w-full bg-slate-50 border border-slate-300 rounded-md shadow-sm p-3 text-slate-800
-                        focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              required
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="nome"
-              className="block text-sm font-medium text-slate-800 mb-1"
-            >
-              Descrição
-            </label>
-            <textarea
-              id="nome"
               name="nome"
               value={formData.nome}
               onChange={handleInputChange}
-              className="block w-full bg-slate-50 border border-slate-300 rounded-md shadow-sm p-3 text-slate-800
-                        focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              rows={4}
+              className="block w-full bg-preto/50 border border-roxo-200/50 rounded-lg shadow-sm p-4 text-branco placeholder-gray-400
+                        focus:outline-none focus:ring-2 focus:ring-roxo-100 focus:border-roxo-100 transition-all duration-300
+                        hover:border-roxo-100/70"
+              placeholder="Digite o nome da categoria..."
               required
             />
           </div>
 
-          <div className="flex items-center space-x-4 pt-2">
+          <div className="flex items-center space-x-4 pt-4">
             <button
-              type="submit"
-              className="inline-flex justify-center py-2 px-5 border border-transparent shadow-sm text-sm font-semibold rounded-md text-white 
-                        bg-green-300 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
-                        transition-colors duration-200"
+              onClick={handleSubmit}
+              className="flex-1 inline-flex justify-center items-center py-3 px-6 border border-transparent shadow-lg text-sm font-bold rounded-lg text-branco 
+                        bg-gradient-to-r from-roxo-100 to-rosa-100 hover:from-roxo-50 hover:to-rosa-200 
+                        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-roxo-100
+                        transition-all duration-300 transform hover:scale-105"
             >
               {categoriaEmEdicao ? "Salvar Alterações" : "Adicionar Categoria"}
             </button>
+            
             {categoriaEmEdicao && (
               <button
-                type="button"
                 onClick={handleCancel}
-                className="py-2 px-5 border border-slate-300 shadow-sm text-sm font-semibold rounded-md text-slate-700 
-                          bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
-                          transition-colors duration-200"
+                className="py-3 px-6 border border-gray-600 shadow-lg text-sm font-bold rounded-lg text-gray-300 
+                          bg-gray-800 hover:bg-gray-700 hover:text-branco 
+                          focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500
+                          transition-all duration-300"
               >
-                Cancelar
+                ❌ Cancelar
               </button>
             )}
           </div>
-        </form>
+        </div>
       </div>
 
-      <div className="bg-green-100 p-6 sm:p-8 rounded-xl shadow-lg">
-        <h2 className="text-2xl font-bold text-slate-800 mb-6">
-          Categorias
+      {/* Lista de Categorias */}
+      <div className="bg-cinza border border-roxo-200/30 p-8 rounded-xl shadow-2xl backdrop-blur-sm">
+        <h2 className="text-3xl font-bold text-branco mb-8 text-center">
+          Categorias ({categorias.length})
         </h2>
 
-        {loading && <p className="text-slate-500">Carregando...</p>}
-        {error && <p className="text-red-500 font-semibold">{error}</p>}
+        {categorias.length === 0 ? (
+          <div className="text-center py-12">
+            <div className="text-6xl mb-4">📭</div>
+            <p className="text-gray-400 text-lg">Nenhuma categoria encontrada.</p>
+            <p className="text-gray-500 text-sm mt-2">Adicione sua primeira categoria usando o formulário acima!</p>
+          </div>
+        ) : (
+          <div className="grid gap-4">
+            {categorias.map((cat) => (
+              <div
+                key={cat.id}
+                className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-6 
+                          border border-roxo-200/30 rounded-lg bg-preto/30 backdrop-blur-sm
+                          hover:border-roxo-100/50 hover:bg-preto/50 transition-all duration-300 group"
+              >
+                <div className="mb-3 sm:mb-0 flex-1">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-3 h-3 rounded-full bg-gradient-to-r from-roxo-100 to-rosa-100"></div>
+                    <span className="font-bold text-branco text-lg group-hover:text-roxo-100 transition-colors duration-300">
+                      {cat.nome}
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-400 mt-1 ml-6">ID: {cat.id}</p>
+                </div>
 
-        <ul className="space-y-3">
-          {!loading && !error && categorias.length === 0 && (
-            <p className="text-slate-500">Nenhuma categoria encontrada.</p>
-          )}
-          {categorias.map((cat) => (
-            <li
-              key={cat.id}
-              className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-4 border border-slate-200 rounded-lg bg-white hover:bg-slate-50 transition-colors duration-150"
-            >
-              <div className="mb-3 sm:mb-0">
-                <span className="font-semibold text-slate-800">
-                  {cat.categoria}
-                </span>
-                <p className="text-sm text-slate-600">{cat.nome}</p>
+                <div className="flex space-x-3 self-end sm:self-center">
+                  <button
+                    onClick={() => handleEdit(cat)}
+                    className="py-2 px-4 text-sm font-semibold rounded-lg text-preto bg-gradient-to-r from-azul-100 to-azul-200
+                              hover:from-azul-200 hover:to-azul-100 transition-all duration-300 transform hover:scale-105
+                              focus:outline-none focus:ring-2 focus:ring-azul-100"
+                  >
+                    ✏️ Editar
+                  </button>
+                  <button
+                    onClick={() => handleDelete(cat.id)}
+                    className="py-2 px-4 text-sm font-semibold rounded-lg text-branco bg-gradient-to-r from-rosa-200 to-rosa-100
+                              hover:from-rosa-100 hover:to-rosa-200 transition-all duration-300 transform hover:scale-105
+                              focus:outline-none focus:ring-2 focus:ring-rosa-200"
+                  >
+                    🗑️ Excluir
+                  </button>
+                </div>
               </div>
-
-              <div className="flex space-x-2 self-end sm:self-center">
-                <button
-                  onClick={() => handleEdit(cat)}
-                  className="py-1 px-3 text-sm font-medium rounded-md text-black bg-yellow-200 hover:bg-yellow-300 hover:text-yellow-800 transition-colors duration-150"
-                >
-                  Editar
-                </button>
-                <button
-                  onClick={() => handleDelete(cat.id)}
-                  className="py-1 px-3 text-sm font-medium rounded-md text-black bg-red-200 hover:bg-red-300 hover:text-red-800 transition-colors duration-150"
-                >
-                  Excluir
-                </button>
-              </div>
-            </li>
-          ))}
-        </ul>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
