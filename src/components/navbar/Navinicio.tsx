@@ -20,6 +20,7 @@ function Navbar() {
             <span
               className="absolute left-0 bottom-[-4px] w-full h-[2px] bg-roxo-100 scale-x-0 origin-left transition-transform duration-400 ease-in-out group-hover:scale-x-100"
             />
+            
           </li>
           <li className="cursor-pointer relative group hover:brightness-105 hover:text-roxo-100">
             <a href="#planos">Planos</a>
