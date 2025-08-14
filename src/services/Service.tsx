@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-function-type */
+/* eslint-disable no-useless-catch */
 import axios from "axios";
 
 export const api = axios.create({
@@ -23,7 +26,7 @@ api.interceptors.response.use(
   }
 );
 
-export const login = async (url: string, dados: Object, setDados: Function) => {
+export const login = async (url: string, dados: object, setDados: Function) => {
   try {
     const resposta = await api.post(url, dados);
 
@@ -61,7 +64,7 @@ export const getCurrentUser = () => {
   return user ? JSON.parse(user) : null;
 };
 
-export const cadastrarUsuario = async (url: string, dados: Object, setDados: Function) => {
+export const cadastrarUsuario = async (url: string, dados: object, setDados: Function) => {
   const resposta = await api.post(url, dados);
   setDados(resposta.data);
 };
@@ -76,12 +79,12 @@ export const buscar = async <T = any>(url: string): Promise<T | null> => {
   }
 };
 
-export const cadastrar = async (url: string, dados: Object, setDados: Function) => {
+export const cadastrar = async (url: string, dados: object, setDados: Function) => {
   const resposta = await api.post(url, dados);
   setDados(resposta.data);
 };
 
-export const atualizar = async (url: string, dados: Object, setDados: Function) => {
+export const atualizar = async (url: string, dados: object, setDados: Function) => {
   const resposta = await api.put(url, dados);
   setDados(resposta.data);
 };

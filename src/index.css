@@ -2,6 +2,7 @@
 @import "tailwindcss";
 
 :root {
+  background-color: #0e0e0e;
   --toastify-color-dark: #121212;
   --toastify-color-info: var(--color-roxo-200);
   --toastify-color-success: var(--color-roxo-100);
@@ -33,8 +34,8 @@
 
 @theme {
   --color-branco: #ffff;
-
   --color-preto: #000;
+  --color-cinza-50: #1d1322;
   --color-cinza: #0e0e0e;
   --color-azul-100: #0067e9;
   --color-azul-200: #05499f;
@@ -45,13 +46,13 @@
 
   --color-rosa-100: #e65395;
   --color-rosa-200: #c60f61;
-  
+
   --font-family-Source: "Source Sans 3", sans-serif;
 }
 
-html {
+
   @apply scroll-smooth;
-}
+
 
 body {
   background-color: var(--color-cinza);

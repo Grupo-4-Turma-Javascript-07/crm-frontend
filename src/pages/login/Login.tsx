@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Logo from "../assets/img/CRM4ULOGO.png";
-import { AuthContext } from "../contexts/AuthContext";
+import CRM4ULOGO from "/src/assets/img/CRM4ULOGO.png";
+import { AuthContext } from "../../contexts/AuthContext";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -9,15 +10,16 @@ function Login() {
   const { handleLogin, isLoading, isAuth } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (isAuth) {
-      navigate("/");
-    }
-  }, [isAuth, navigate]);
+  // useEffect(() => {
+  //   if (isAuth) {
+  //     navigate("/");
+  //   }
+  // }, [isAuth, navigate]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     await handleLogin(email, password);
+    navigate('/home')
   }
 
   function handleCadastroClick() {
@@ -56,7 +58,7 @@ function Login() {
         </div>
         <div className="w-full py-6 z-20">
           <h1 className="my-6 flex justify-center items-center">
-            <img src={Logo} alt="Logo" className="h-28 w-auto" />
+            <img src={CRM4ULOGO} alt="Logo" className="h-28 w-auto" />
           </h1>
           <>
             <form
