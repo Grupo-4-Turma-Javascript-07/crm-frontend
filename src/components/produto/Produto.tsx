@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 
 import { useState, useEffect, type FormEvent, type ChangeEvent } from 'react';
-import { api } from '../api';
+import { api } from '../../services/Service';
 
 
 interface CategoriaSimples { id: number; nome: string; }

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CRM4ULOGO from "../assets/img/CRM4ULOGO.png";
+import CRM4ULOGO from "/src/assets/img/CRM4ULOGO.png";
 import { AuthContext } from "../../contexts/AuthContext";
 
 function Login() {

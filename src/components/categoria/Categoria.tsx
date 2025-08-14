@@ -1,5 +1,5 @@
 import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
-import { api } from "../services/Service";
+import { api } from "../../services/Service";
 
 interface Categoria {
   id: number;
