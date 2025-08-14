@@ -9,15 +9,16 @@ function Login() {
   const { handleLogin, isLoading, isAuth } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (isAuth) {
-      navigate("/");
-    }
-  }, [isAuth, navigate]);
+  // useEffect(() => {
+  //   if (isAuth) {
+  //     navigate("/");
+  //   }
+  // }, [isAuth, navigate]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     await handleLogin(email, password);
+    navigate('/home')
   }
 
   function handleCadastroClick() {
