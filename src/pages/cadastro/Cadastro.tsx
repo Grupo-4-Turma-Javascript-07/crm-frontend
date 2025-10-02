@@ -162,7 +162,7 @@ function Cadastro() {
             <div className="mx-1 pt-4">
               <button
                 type="submit"
-                className="w-full inline-flex justify-center items-center py-3 border border-transparent shadow-lg text-lg font-bold rounded-lg text-branco bg-gradient-to-r from-roxo-100 to-rosa-100 hover:from-roxo-50 hover:to-rosa-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-roxo-100 transition-all duration-300 transform hover:scale-105"
+                className="flex-1 w-full inline-flex justify-center items-center py-3  border border-transparent shadow-lg text-lg font-bold rounded-lg text-branco bg-gradient-to-r from-roxo-300 to-roxo-250 hover:from-roxo-100 hover:to-roxo-250 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-roxo-250 transition-all duration-300 transform hover:scale-105"
                 disabled={loading}
               >
                 {loading ? "Cadastrando..." : "Criar conta"}

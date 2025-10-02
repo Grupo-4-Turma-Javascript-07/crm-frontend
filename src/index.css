@@ -37,12 +37,20 @@
   --color-preto: #000;
   --color-cinza-50: #1d1322;
   --color-cinza: #0e0e0e;
+  --color-cinza-100: #1E1E1E;
+  --color-cinza-50: #757575;
   --color-azul-100: #0067e9;
   --color-azul-200: #05499f;
 
+  --color-roxinho: #F5EEFD;
   --color-roxo-50: #981c9d;
-  --color-roxo-100: #8c52ff;
+  --color-roxo-100: #896AB7;
   --color-roxo-200: #352060;
+  --color-roxo-250: #5A12B3;
+  --color-roxo-300: #140031;
+  --color-roxo-350: #5F16E4;
+
+  --color-verde-100: #9CE316;
 
   --color-rosa-100: #e65395;
   --color-rosa-200: #c60f61;

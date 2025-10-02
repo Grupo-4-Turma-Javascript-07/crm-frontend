@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CRM4ULOGO from "/src/assets/img/CRM4ULOGO.png";
 import { AuthContext } from "../../contexts/AuthContext";
 
@@ -58,7 +58,13 @@ function Login() {
         </div>
         <div className="w-full py-6 z-20">
           <h1 className="my-6 flex justify-center items-center">
-            <img src={CRM4ULOGO} alt="Logo" className="h-28 w-auto" />
+            <Link to="/inicio">
+              <img
+              src={CRM4ULOGO}
+              alt="Logo"
+              className="h-28 w-auto cursor-pointer"
+            />
+          </Link>
           </h1>
           <>
             <form
@@ -90,14 +96,15 @@ function Login() {
                 />
               </div>
               <div className="text-right text-gray-400 hover:underline hover:text-gray-100">
-                <button type="button" className="cursor-pointer">
-                  Esqueceu a senha?
-                </button>
-              </div>
+                <Link to="/senha" className="cursor-pointer">
+                Esqueceu a senha?
+                </Link>
+                </div>
+
               <div className="mx-1 pt-4">
                 <button
                   type="submit"
-                  className="flex-1 w-full inline-flex justify-center items-center py-3  border border-transparent shadow-lg text-lg font-bold rounded-lg text-branco bg-gradient-to-r from-roxo-100 to-rosa-100 hover:from-roxo-50 hover:to-rosa-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-roxo-100 transition-all duration-300 transform hover:scale-105"
+                  className="flex-1 w-full inline-flex justify-center items-center py-3  border border-transparent shadow-lg text-lg font-bold rounded-lg text-branco bg-gradient-to-r from-roxo-300 to-roxo-250 hover:from-roxo-100 hover:to-roxo-250 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-roxo-250 transition-all duration-300 transform hover:scale-105"
                   disabled={isLoading}
                 >
                   {isLoading ? "Entrando..." : "Entrar"}
