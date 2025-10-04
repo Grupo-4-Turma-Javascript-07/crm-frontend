@@ -1,69 +1,118 @@
-# React + TypeScript + Vite
+# 📱 CRM4U Frontend  
+<div align="center">
+  <img src="https://img.shields.io/badge/React-Componentes_Intuitivos-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React Badge" />
+  <img src="https://img.shields.io/badge/TypeScript-Tipos_Fortes-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript Badge" />
+  <img src="https://img.shields.io/badge/TailwindCSS-Estilo_Moderno-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind Badge" />
+  <img src="https://img.shields.io/badge/Axios-Requisições_Fáceis-5A29E4?style=for-the-badge&logo=axios&logoColor=white" alt="Axios Badge" />
+  <img src="https://img.shields.io/badge/Context_API-Gerenciamento_Eficiente-FBBF24?style=for-the-badge&logo=react&logoColor=white" alt="Context API Badge" />
+</div>  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Projeto frontend de um sistema CRM com autenticação JWT, interface responsiva, e funcionalidades completas de CRUD com gerenciamento de produtos, categorias e usuários.  
 
-Currently, two official plugins are available:
+## ✅ Objetivo e Modelo de Negócio
+Desenvolver uma aplicação frontend moderna e responsiva para sistema de CRM, conectada a uma API segura com autenticação JWT. O sistema permite cadastro de usuários e gerenciamento completo de produtos categorizados por usuários autenticados, incluindo controle de atividades e solicitações empresariais.  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🧾 Descrição Geral
+- Interface moderna com Tailwind CSS
+- Autenticação JWT com Context API
+- CRUD completo para `Usuario`, `Categoria` e `Produto`
+- Gerenciamento de atividades e afazeres
+- Sistema de rotas protegidas com React Router
+- Requisições HTTP otimizadas com Axios
+- Deploy automatizado na Netlify
 
-## Expanding the ESLint configuration
+## 🔄 Funcionalidades Implementadas
+- `Cadastro de usuários` — registro de novos usuários no sistema
+- `Login/Logout` — autenticação com token JWT
+- `Gestão de Produtos` — criar, listar, editar e excluir produtos
+- `Gestão de Categorias` — CRUD completo de categorias
+- `Controle de Atividades` — adicionar afazeres e solicitações
+- `Rotas Protegidas` — acesso controlado por autenticação
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🧪 Tecnologias Utilizadas
+| Tecnologias        | Versão / Observação              |
+|--------------------|----------------------------------|
+| React              | 18 - Framework principal         |
+| TypeScript         | Tipagem estática                 |
+| Tailwind CSS       | Framework de estilos             |
+| Context API        | Gerenciamento de estado          |
+| React Router DOM   | Roteamento da aplicação          |
+| Axios              | Cliente HTTP                     |
+| Netlify            | Deploy e hospedagem              |  
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🔐 Segurança
+- Autenticação via **JWT tokens** enviados no header Authorization usando o esquema Bearer
+- Gerenciamento de estado com **Context API**
+  Navegação das rotas com **React Router DOM**
+- Interceptadores Axios para **headers automáticos**
+- **Logout automático** em caso de token expirado  
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 🛠️ Setup e Execução
+### 1. Clone o repositório:
+```bash
+git clone https://github.com/Grupo-4-Turma-Javascript-07/crm-frontend.git
+cd crm-frontend
+```  
+### 2. Instale as dependências:
+```bash
+yarn
+```
+### 3. Configure seu arquivo .env:
+```bash
+VITE_API_URL=http://localhost:3000
+```  
+### 4. Execução e Testes da Aplicação em modo Desenvolvimento:
+```bash
+yarn dev
+```
+### 4. Execução da Aplicação:
+```bash
+yarn start
+```
+### 5. Build para Produção:
+```bash
+yarn build
+```
+### 6. Deploy
+O projeto está configurado para deploy automático na [Netlify](https://netlify.com).
+Acesse a aplicação em: `https://seu-crm.netlify.app`  
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 7. Estrutura do Projeto
+```
+src/
+├── components/      # Componentes reutilizáveis
+├── assets/       # Arquivos de imagem
+├── contexts/       # Context API (autenticação)
+├── pages/          # Páginas da aplicação
+├── services/       # Configuração do Axios
+└── utils/          # Funções utilitárias
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📝 Status de Desenvolvimento
+### ✅ Concluído
+- [x] Sistema de autenticação (login/cadastro)
+- [x] CRUD de produtos
+- [x] CRUD de categorias
+- [x] Gerenciamento de atividades
+- [x] Interface responsiva
+- [x] Deploy na Netlify
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### ⏳ Em Desenvolvimento
+- [ ] Edição de perfil de usuários
+- [ ] Exclusão de usuários
+- [ ] Dashboard com métricas
+- [ ] Sistema de notificações
+- [ ] Busca de um único produto e categoria
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 👥 Autores
+
+* [@melcsilva](https://github.com/melcsilva)
+* [@igorpardinho](https://github.com/igorpardinho)
+* [@larissa-pinheiro](https://github.com/larissa-pinheiro)
+* [@marinavarroo](https://github.com/marinavarroo)
+* [@oligEdu](https://github.com/oligEdu)
+* [@Juliotbr](https://github.com/Juliotbr)
+* [@VanessaTargino](https://github.com/VanessaTargino)
+
+---
+Projeto desenvolvido como parte do aprendizado prático no bootcamp FullStack JavaScript da Generation Brasil.

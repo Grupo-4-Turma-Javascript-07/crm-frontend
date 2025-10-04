@@ -1,5 +1,3 @@
-import React from 'react';
-
 type FotoEquipeProps = {
   src: string;
   alt: string;
