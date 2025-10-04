@@ -10,12 +10,23 @@ const estadoInicialForm = {
   nome: "",
 };
 
+interface Paginacao<T> {
+  data: T[];
+  total: number;
+  page: number;
+  limit: number;
+}
+
 function Categoria() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [categorias, setCategorias] = useState<Categoria[]>([]);
+  const [categorias, setCategorias] = useState<Paginacao<Categoria> | null>(
+    null
+  );
   const [formData, setFormData] = useState(estadoInicialForm);
-  const [categoriaEmEdicao, setCategoriaEmEdicao] = useState<Categoria | null>(null);
+  const [categoriaEmEdicao, setCategoriaEmEdicao] = useState<Categoria | null>(
+    null
+  );
 
   useEffect(() => {
     buscarCategorias();
@@ -24,7 +35,7 @@ function Categoria() {
   async function buscarCategorias() {
     try {
       setLoading(true);
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       const res = await api.get("/categorias", {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -49,14 +60,16 @@ function Categoria() {
     }
 
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       const headers = {
         Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       };
 
       if (categoriaEmEdicao) {
-        await api.put(`/categorias/${categoriaEmEdicao.id}`, formData, { headers });
+        await api.put(`/categorias/${categoriaEmEdicao.id}`, formData, {
+          headers,
+        });
       } else {
         await api.post("/categorias", formData, { headers });
       }
@@ -73,13 +86,15 @@ function Categoria() {
   async function handleDelete(id: number) {
     if (window.confirm("Tem certeza que deseja excluir esta categoria?")) {
       try {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem("token");
         await api.delete(`/categorias/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        setCategorias(categorias.filter((cat) => cat.id !== id));
+        setCategorias((prev) =>
+          prev ? { ...prev, data: prev.data.filter((p) => p.id !== id) } : prev
+        );
       } catch (err) {
         console.error("Erro ao excluir categoria:", err);
         alert("Erro ao excluir categoria");
@@ -107,20 +122,25 @@ function Categoria() {
     }));
   }
 
-  if (loading) return (
-    <div className="flex items-center justify-center min-h-96">
-      <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-roxo-100"></div>
-    </div>
-  );
+  if (loading)
+    return (
+      <div className="flex items-center justify-center min-h-96">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-roxo-100"></div>
+      </div>
+    );
 
-  if (error) return (
-    <div className="flex items-center justify-center min-h-96">
-      <p className="text-rosa-100 text-xl">{error}</p>
-    </div>
-  );
+  if (error)
+    return (
+      <div className="flex items-center justify-center min-h-96">
+        <p className="text-rosa-100 text-xl">{error}</p>
+      </div>
+    );
 
   return (
-    <div id="categoria" className="min-h-screen w-full max-w-6xl mx-auto px-4 py-8 mt-20">
+    <div
+      id="categoria"
+      className="min-h-screen w-full max-w-6xl mx-auto px-4 py-8 mt-20"
+    >
       {/* Card do Formulário */}
       <div className="bg-black border-roxo-200/30 p-8 rounded-xl shadow-2xl mb-8 backdrop-blur-sm">
         <h2 className="text-3xl font-bold text-branco mb-8 text-center">
@@ -155,7 +175,7 @@ function Categoria() {
             >
               {categoriaEmEdicao ? "Salvar Alterações" : "Adicionar Categoria"}
             </button>
-            
+
             {categoriaEmEdicao && (
               <button
                 onClick={handleCancel}
@@ -174,18 +194,22 @@ function Categoria() {
       {/* Lista de Categorias */}
       <div className="bg-black border border-roxo-200/30 p-8 rounded-xl shadow-2xl backdrop-blur-sm">
         <h2 className="text-3xl font-bold text-branco mb-8 text-center">
-          Categorias ({categorias.length})
+          Categorias ({categorias?.data.length})
         </h2>
 
-        {categorias.length === 0 ? (
+        {categorias?.data.length === 0 ? (
           <div className="text-center py-12">
             <div className="text-6xl mb-4">📭</div>
-            <p className="text-gray-400 text-lg">Nenhuma categoria encontrada.</p>
-            <p className="text-gray-500 text-sm mt-2">Adicione sua primeira categoria usando o formulário acima!</p>
+            <p className="text-gray-400 text-lg">
+              Nenhuma categoria encontrada.
+            </p>
+            <p className="text-gray-500 text-sm mt-2">
+              Adicione sua primeira categoria usando o formulário acima!
+            </p>
           </div>
         ) : (
           <div className="grid gap-4">
-            {categorias.map((cat) => (
+            {categorias?.data?.map((cat) => (
               <div
                 key={cat.id}
                 className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-6 
@@ -199,7 +223,9 @@ function Categoria() {
                       {cat.nome}
                     </span>
                   </div>
-                  <p className="text-sm text-gray-400 mt-1 ml-6">ID: {cat.id}</p>
+                  <p className="text-sm text-gray-400 mt-1 ml-6">
+                    ID: {cat.id}
+                  </p>
                 </div>
 
                 <div className="flex space-x-3 self-end sm:self-center">
