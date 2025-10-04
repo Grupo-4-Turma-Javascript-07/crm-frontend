@@ -9,30 +9,35 @@ function Navbar() {
   const [openSearchInput] = useState(false);
 
   return (
-    <nav className="bg-cinza-50 flex items-center justify-center drop-shadow-sm py-1.5 px-6 fixed w-full z-1000">
+    <nav className="bg-gradient-to-r from-roxo-300 via-roxo-250 to-roxo-300 flex items-center justify-center drop-shadow-sm py-1.5 px-6 fixed w-full z-1000">
       <div className="container flex items-center justify-between w-full">
         <div className="flex flex-1 justify-start">
-          <img src={Logo} width={112} className="cursor-pointer" alt="Logo CRM4U" />
+          <a href='#inicio'>
+          <img src={Logo} 
+          width={112} 
+          className="cursor-pointer" alt="Logo CRM4U" 
+          />
+          </a>
         </div>
 
         <ul className="hidden lg:flex lg:w-1/3 justify-center gap-8 text-xl">
-          <li className="cursor-pointer relative group hover:brightness-105 hover:text-roxo-100">
+          <li className="text-gray-300 cursor-pointer relative group hover:brightness-105 hover:text-white">
             <a href='#inicio'>Home</a>
             <span
-              className="absolute left-0 bottom-[-4px] w-full h-[2px] bg-roxo-100 scale-x-0 origin-left transition-transform duration-400 ease-in-out group-hover:scale-x-100"
+              className="absolute left-0 bottom-[-4px] w-full h-[2px] bg-white scale-x-0 origin-left transition-transform duration-400 ease-in-out group-hover:scale-x-100"
             />
             
           </li>
-          <li className="cursor-pointer relative group hover:brightness-105 hover:text-roxo-100">
+          <li className="text-gray-300 cursor-pointer relative group hover:brightness-105 hover:text-white">
             <a href="#planos">Planos</a>
             <span
-              className="absolute left-0 bottom-[-4px] w-full h-[2px] bg-roxo-100 scale-x-0 origin-left transition-transform duration-400 ease-in-out group-hover:scale-x-100"
+              className="absolute left-0 bottom-[-4px] w-full h-[2px] bg-white scale-x-0 origin-left transition-transform duration-400 ease-in-out group-hover:scale-x-100"
             />
           </li>
-          <li className="cursor-pointer relative group hover:brightness-105 hover:text-roxo-100">
+          <li className="text-gray-300 cursor-pointer relative group hover:brightness-105 hover:text-white">
             <a href="#sobre">Sobre Nós</a>
             <span
-              className="absolute left-0 bottom-[-4px] w-full h-[2px] bg-roxo-100 scale-x-0 origin-left transition-transform duration-400 ease-in-out group-hover:scale-x-100"
+              className="absolute left-0 bottom-[-4px] w-full h-[2px] bg-white scale-x-0 origin-left transition-transform duration-400 ease-in-out group-hover:scale-x-100"
             />
           </li>
         </ul>
@@ -49,18 +54,18 @@ function Navbar() {
           </div>
           
           <div className="flex-1 flex justify-end gap-4">
+              <Link
+              to="/cadastro"
+              className="px-4 py-2 bg-gradient-to-r from-roxo-100 to-roxo-250 font-semibold hover:text-white hover:border-roxo-200 transition-all duration-300 rounded-lg cursor-pointer"
+              >
+                Comece grátis
+                </Link>
             <Link
             to="/login"
-            className="px-4 py-2 hover:bg-roxo-100 hover:text-white hover:border-roxo-100 transition-all duration-300 border-1 rounded-4xl cursor-pointer"
+            className="text-gray-300 px-4 py-2 font-semibold hover:text-white transition-all duration-300 border-1 rounded-lg cursor-pointer"
             >
               Login
               </Link>
-              <Link
-              to="/cadastro"
-              className="px-4 py-2 bg-roxo-100 hover:bg-roxo-200 hover:text-white hover:border-roxo-200 transition-all duration-300 rounded-4xl cursor-pointer"
-              >
-                Cadastro
-                </Link>
                 </div>
 
           <button
