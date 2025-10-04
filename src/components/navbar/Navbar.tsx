@@ -1,7 +1,6 @@
 import { useState } from "react";
-import CRM4ULOGO from '../../assets/img/CRM4ULOGO.png';
 import { Link } from "react-router-dom";
-
+import logo from "../../assets/img/CRM4ULOGO.png";
 
 function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -50,7 +49,11 @@ function Navbar() {
                 {/* Substituir pelo logo real */}
         <div className="container flex items-center justify-between w-full">
             <div className="flex flex-1 justify-start">
-                <img src={CRM4ULOGO} width={112} className="cursor-pointer" alt="Logo CRM4U" />
+            <img 
+            src={logo} 
+            alt="Company Logo" 
+            className="h-24 w-auto object-contain" 
+          />
             </div>
         </div>
             </button>
