@@ -10,6 +10,7 @@ import Cadastro from "./pages/cadastro/Cadastro";
 import Categoria from "./components/categoria/Categoria";
 import Produto from "./components/produto/Produto";
 import Help from "./pages/help/Help";
+import Usuarios from "./components/usuarios/Usuarios.tsx"
 
 // layouts
 import PublicLayout from "./components/layouts/PublicLayout";
@@ -30,6 +31,7 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/categorias" element={<Categoria />} />
             <Route path="/produtos" element={<Produto />} />
+            <Route path="/usuarios" element={<Usuarios />}/>
             <Route path="/help" element={<Help />} />
           </Route>
 

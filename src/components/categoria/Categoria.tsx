@@ -20,13 +20,9 @@ interface Paginacao<T> {
 function Categoria() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [categorias, setCategorias] = useState<Paginacao<Categoria> | null>(
-    null
-  );
+  const [categorias, setCategorias] = useState<Paginacao<Categoria> | null>(null);
   const [formData, setFormData] = useState(estadoInicialForm);
-  const [categoriaEmEdicao, setCategoriaEmEdicao] = useState<Categoria | null>(
-    null
-  );
+  const [categoriaEmEdicao, setCategoriaEmEdicao] = useState<Categoria | null>(null);
 
   useEffect(() => {
     buscarCategorias();
@@ -37,14 +33,11 @@ function Categoria() {
       setLoading(true);
       const token = localStorage.getItem("token");
       const res = await api.get("/categorias", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { Authorization: `Bearer ${token}` },
       });
-      console.log("Categorias recebidas:", res.data);
       setCategorias(res.data);
     } catch (err) {
-      console.error("Erro ao buscar categorias:", err);
+      console.error(err);
       setError("Erro ao buscar categorias");
     } finally {
       setLoading(false);
@@ -53,23 +46,17 @@ function Categoria() {
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
-
     if (!formData.nome.trim()) {
-      alert("Por favor preencha o nome da categoria");
+      alert("Preencha o nome da categoria");
       return;
     }
 
     try {
       const token = localStorage.getItem("token");
-      const headers = {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      };
+      const headers = { Authorization: `Bearer ${token}`, "Content-Type": "application/json" };
 
       if (categoriaEmEdicao) {
-        await api.put(`/categorias/${categoriaEmEdicao.id}`, formData, {
-          headers,
-        });
+        await api.put(`/categorias/${categoriaEmEdicao.id}`, formData, { headers });
       } else {
         await api.post("/categorias", formData, { headers });
       }
@@ -78,35 +65,28 @@ function Categoria() {
       setCategoriaEmEdicao(null);
       buscarCategorias();
     } catch (err) {
-      console.error("Erro ao salvar categoria:", err);
+      console.error(err);
       alert("Erro ao salvar categoria");
     }
   }
 
   async function handleDelete(id: number) {
-    if (window.confirm("Tem certeza que deseja excluir esta categoria?")) {
-      try {
-        const token = localStorage.getItem("token");
-        await api.delete(`/categorias/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setCategorias((prev) =>
-          prev ? { ...prev, data: prev.data.filter((p) => p.id !== id) } : prev
-        );
-      } catch (err) {
-        console.error("Erro ao excluir categoria:", err);
-        alert("Erro ao excluir categoria");
-      }
+    if (!window.confirm("Tem certeza que deseja excluir esta categoria?")) return;
+    try {
+      const token = localStorage.getItem("token");
+      await api.delete(`/categorias/${id}`, { headers: { Authorization: `Bearer ${token}` } });
+      setCategorias(prev =>
+        prev ? { ...prev, data: prev.data.filter(c => c.id !== id) } : prev
+      );
+    } catch (err) {
+      console.error(err);
+      alert("Erro ao excluir categoria");
     }
   }
 
   function handleEdit(categoria: Categoria) {
     setCategoriaEmEdicao(categoria);
-    setFormData({
-      nome: categoria.nome,
-    });
+    setFormData({ nome: categoria.nome });
   }
 
   function handleCancel() {
@@ -116,10 +96,7 @@ function Categoria() {
 
   function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   }
 
   if (loading)
@@ -137,117 +114,93 @@ function Categoria() {
     );
 
   return (
-    <div
-      id="categoria"
-      className="min-h-screen w-full max-w-6xl mx-auto px-4 py-8 mt-20"
-    >
-      {/* Card do Formulário */}
-      <div className="bg-black border-roxo-200/30 p-8 rounded-xl shadow-2xl mb-8 backdrop-blur-sm">
-        <h2 className="text-3xl font-bold text-branco mb-8 text-center">
+    <div className="min-h-screen w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-10">
+      {/* Formulário */}
+      <div className="bg-[#2a2a2a] border border-roxo-200/30 rounded-xl shadow-lg p-6 mb-8">
+        <h2 className="text-white text-2xl font-bold mb-6 text-center">
           {categoriaEmEdicao ? "Editar Categoria" : "➕ Nova Categoria"}
         </h2>
 
-        <div onSubmit={handleSubmit} className="space-y-6">
-          <div className="group">
-            <label className="block text-sm font-semibold text-roxo-100 mb-2 transition-colors group-focus-within:text-roxo-100">
-              Nome da Categoria
-            </label>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-white mb-2">Nome da Categoria</label>
             <input
               type="text"
               name="nome"
               value={formData.nome}
               onChange={handleInputChange}
-              className="block w-full bg-preto/50 border border-roxo-200/50 rounded-lg shadow-sm p-4 text-branco placeholder-gray-400
-                        focus:outline-none focus:ring-2 focus:ring-roxo-100 focus:border-roxo-100 transition-all duration-300
-                        hover:border-roxo-100/70"
               placeholder="Digite o nome da categoria..."
+              className="block w-full bg-[#1b1b1b] border border-roxo-200/50 rounded-lg p-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-roxo-100 focus:border-roxo-100 transition-all duration-300"
               required
             />
           </div>
 
-          <div className="flex items-center space-x-4 pt-4">
+          <div className="flex items-center space-x-4">
             <button
-              onClick={handleSubmit}
-              className="flex-1 inline-flex justify-center items-center py-3 px-6 border border-transparent shadow-lg text-sm font-bold rounded-lg text-branco 
-                        bg-gradient-to-r from-roxo-100 to-rosa-100 hover:from-roxo-50 hover:to-rosa-200 
-                        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-roxo-100
-                        transition-all duration-300 transform hover:scale-105"
+              type="submit"
+              className="flex-1 inline-flex justify-center py-2 px-6 border border-transparent shadow-lg text-sm font-bold rounded-lg text-white
+                        bg-gradient-to-r from-roxo-100 to-rosa-100 hover:from-roxo-50 hover:to-rosa-200
+                        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-roxo-100 transition-all duration-300 transform hover:scale-105"
             >
               {categoriaEmEdicao ? "Salvar Alterações" : "Adicionar Categoria"}
             </button>
-
             {categoriaEmEdicao && (
               <button
+                type="button"
                 onClick={handleCancel}
-                className="py-3 px-6 border border-gray-600 shadow-lg text-sm font-bold rounded-lg text-gray-300 
-                          bg-gray-800 hover:bg-gray-700 hover:text-branco 
-                          focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500
-                          transition-all duration-300"
+                className="py-2 px-6 border border-gray-600 text-gray-300 rounded-lg bg-gray-800 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-all duration-300"
               >
                 ❌ Cancelar
               </button>
             )}
           </div>
-        </div>
+        </form>
       </div>
 
-      {/* Lista de Categorias */}
-      <div className="bg-black border border-roxo-200/30 p-8 rounded-xl shadow-2xl backdrop-blur-sm">
-        <h2 className="text-3xl font-bold text-branco mb-8 text-center">
-          Categorias ({categorias?.data.length})
-        </h2>
+      {/* Lista de categorias */}
+      <div className="bg-[#2a2a2a] border border-roxo-200/30 rounded-xl shadow-lg overflow-hidden">
+        <div className="border-b px-6 py-4">
+          <h2 className="text-white text-xl font-bold">Categorias ({categorias?.data.length || 0})</h2>
+        </div>
 
         {categorias?.data.length === 0 ? (
-          <div className="text-center py-12">
+          <div className="text-center py-12 text-gray-400">
             <div className="text-6xl mb-4">📭</div>
-            <p className="text-gray-400 text-lg">
-              Nenhuma categoria encontrada.
-            </p>
-            <p className="text-gray-500 text-sm mt-2">
-              Adicione sua primeira categoria usando o formulário acima!
-            </p>
+            Nenhuma categoria encontrada.
           </div>
         ) : (
-          <div className="grid gap-4">
-            {categorias?.data?.map((cat) => (
-              <div
-                key={cat.id}
-                className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-6 
-                          border border-roxo-200/30 rounded-lg bg-preto/30 backdrop-blur-sm
-                          hover:border-roxo-100/50 hover:bg-preto/50 transition-all duration-300 group"
-              >
-                <div className="mb-3 sm:mb-0 flex-1">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-3 h-3 rounded-full bg-gradient-to-r from-roxo-100 to-rosa-100"></div>
-                    <span className="font-bold text-branco text-lg group-hover:text-roxo-100 transition-colors duration-300">
-                      {cat.nome}
-                    </span>
-                  </div>
-                  <p className="text-sm text-gray-400 mt-1 ml-6">
-                    ID: {cat.id}
-                  </p>
-                </div>
-
-                <div className="flex space-x-3 self-end sm:self-center">
-                  <button
+          <div className="overflow-x-auto">
+            <table className="min-w-full">
+              <thead className="bg-[#1b1b1b]/50">
+                <tr>
+                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-300 uppercase tracking-wider">Nome</th>
+                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-300 uppercase tracking-wider">ID</th>
+                  <th className="px-6 py-3 text-right text-sm font-bold text-gray-300 uppercase tracking-wider">Ações</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-roxo-200/30">
+              {categorias?.data?.map(cat => (
+                <tr key={cat.id} className="hover:bg-[#2a2a2a]/50 transition-colors duration-200">
+                  <td className="px-6 py-4 text-white">{cat.nome}</td>
+                  <td className="px-6 py-4 text-gray-300">{cat.id}</td>
+                  <td className="px-6 py-4 flex justify-end space-x-3">
+                    <button
                     onClick={() => handleEdit(cat)}
-                    className="py-2 px-4 text-sm font-semibold rounded-lg text-preto bg-gradient-to-r from-azul-100 to-azul-200
-                              hover:from-azul-200 hover:to-azul-100 transition-all duration-300 transform hover:scale-105
-                              focus:outline-none focus:ring-2 focus:ring-azul-100"
-                  >
-                    ✏️ Editar
-                  </button>
-                  <button
-                    onClick={() => handleDelete(cat.id)}
-                    className="py-2 px-4 text-sm font-semibold rounded-lg text-branco bg-gradient-to-r from-rosa-200 to-rosa-100
-                              hover:from-rosa-100 hover:to-rosa-200 transition-all duration-300 transform hover:scale-105
-                              focus:outline-none focus:ring-2 focus:ring-rosa-200"
-                  >
-                    🗑️ Excluir
-                  </button>
-                </div>
-              </div>
-            ))}
+                    className="py-1 px-3 text-sm border font-semibold rounded-lg text-white bg-gradient-to-r cursor-pointer hover:text-white transition-all duration-300 transform hover:scale-105"
+                    >
+                      ✏️ Editar 
+                      </button>
+                      <button
+                      onClick={() => handleDelete(cat.id)}
+                      className="py-1 px-3 text-sm border font-semibold rounded-lg text-white bg-gradient-to-r cursor-pointer hover:text-white transition-all duration-300 transform hover:scale-105"
+                      >
+                        🗑️ Excluir 
+                        </button>
+                        </td>
+                        </tr>
+                      ))}
+                      </tbody>
+            </table>
           </div>
         )}
       </div>

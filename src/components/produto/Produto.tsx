@@ -156,8 +156,8 @@ function ProdutoCrud() {
 
   return (
     <div className="min-h-screen bg-cinza w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <div className="bg-[var(--color-preto)] border border-[var(--color-roxo-200)] rounded-xl shadow-lg mt-10 mb-10">
-        <div className="border-b border-[var(--color-roxo-200)] px-6 py-4">
+      <div className="bg-[#2a2a2a] border rounded-xl shadow-lg mt-10 mb-10">
+        <div className="border-b px-6 py-4">
           <h2 className="text-xl text-white">
             {produtoEmEdicao ? "Editar Produto" : "Adicionar Novo Produto"}
           </h2>
@@ -180,7 +180,7 @@ function ProdutoCrud() {
               value={formData.nome}
               onChange={handleInputChange}
               required
-              className="block w-full bg-[var(--color-roxo-200)] border border-[var(--color-roxo-50)] rounded-lg shadow-sm py-2 px-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[var(--color-roxo-100)] focus:border-[var(--color-roxo-100)]"
+              className="block w-full border rounded-lg shadow-sm py-2 px-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[var(--color-roxo-100)] focus:border-[var(--color-roxo-100)]"
             />
           </div>
 
@@ -200,7 +200,7 @@ function ProdutoCrud() {
               required
               step="0.01"
               min="0"
-              className="block w-full bg-[var(--color-roxo-200)] border border-[var(--color-roxo-50)] rounded-lg shadow-sm py-2 px-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[var(--color-roxo-100)] focus:border-[var(--color-roxo-100)]"
+              className="block w-full border rounded-lg shadow-sm py-2 px-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[var(--color-roxo-100)] focus:border-[var(--color-roxo-100)]"
             />
           </div>
 
@@ -220,7 +220,7 @@ function ProdutoCrud() {
               required
               step="1"
               min="0"
-              className="block w-full bg-[var(--color-roxo-200)] border border-[var(--color-roxo-50)] rounded-lg shadow-sm py-2 px-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[var(--color-roxo-100)] focus:border-[var(--color-roxo-100)]"
+              className="block w-full border rounded-lg shadow-sm py-2 px-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[var(--color-roxo-100)] focus:border-[var(--color-roxo-100)]"
             />
           </div>
 
@@ -237,7 +237,7 @@ function ProdutoCrud() {
               value={formData.categoriaId}
               onChange={handleInputChange}
               required
-              className="block w-full bg-[var(--color-roxo-200)] border border-[var(--color-roxo-50)] rounded-lg shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-[var(--color-roxo-100)] focus:border-[var(--color-roxo-100)]"
+              className="block w-full border rounded-lg shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-[var(--color-roxo-100)] focus:border-[var(--color-roxo-100)]"
             >
               <option value="" disabled className="text-gray-500">
                 Selecione...
@@ -274,7 +274,7 @@ function ProdutoCrud() {
           <div className="md:col-span-2 lg:col-span-3 flex items-center space-x-4 pt-2">
             <button
               type="submit"
-              className="inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-bold rounded-lg text-white bg-gradient-to-r from-[var(--color-roxo-100)] to-[var(--color-rosa-100)] hover:from-[var(--color-roxo-50)] hover:to-[var(--color-rosa-200)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[var(--color-cinza)] focus:ring-[var(--color-roxo-100)] transform hover:scale-105 transition-all duration-200"
+              className="inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-bold rounded-lg text-white bg-gradient-to-r from-[var(--color-roxo-100)] to-[var(--color-rosa-100)] hover:from-[var(--color-roxo-50)] hover:to-[var(--color-rosa-200)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[var(--color-cinza)] focus:ring-[var(--color-roxo-100)] transform hover:scale-105"
             >
               {produtoEmEdicao ? "Salvar Alterações" : "Adicionar Produto"}
             </button>
@@ -294,8 +294,8 @@ function ProdutoCrud() {
         )}
       </div>
 
-      <div className="bg-[var(--color-preto)] border border-[var(--color-roxo-200)] rounded-xl shadow-lg overflow-hidden">
-        <div className="border-b border-[var(--color-roxo-200)] px-6 py-4">
+      <div className="bg-[#2a2a2a] rounded-xl shadow-lg overflow-hidden">
+        <div className="border-b  px-6 py-4">
           <h2 className="text-xl text-white">Lista de Produtos</h2>
         </div>
         {loading && <p className="p-6 text-slate-400">Carregando...</p>}
@@ -359,15 +359,15 @@ function ProdutoCrud() {
                     <div className="flex justify-end space-x-4">
                       <button
                         onClick={() => handleEdit(produto)}
-                        className="font-medium text-[var(--color-roxo-100)] hover:text-white"
-                      >
-                        Editar
+                        className="py-1 px-3 text-sm border font-semibold rounded-lg text-white bg-gradient-to-r cursor-pointer hover:text-white transition-all duration-300 transform hover:scale-105"
+                    >
+                      ✏️ Editar 
                       </button>
                       <button
                         onClick={() => handleDelete(produto.id)}
-                        className="font-medium text-[var(--color-rosa-100)] hover:text-white"
+                        className="py-1 px-3 text-sm border font-semibold rounded-lg text-white bg-gradient-to-r cursor-pointer hover:text-white transition-all duration-300 transform hover:scale-105"
                       >
-                        Excluir
+                        🗑️ Excluir
                       </button>
                     </div>
                   </td>
