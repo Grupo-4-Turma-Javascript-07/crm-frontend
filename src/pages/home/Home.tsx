@@ -58,7 +58,7 @@ export default function Home() {
       >
         <div>
           <button
-            className="text-gray-400 mb-6 focus:outline-none cursor-pointer hover:text-purple-500"
+            className="text-gray-400 mb-6 focus:outline-none cursor-pyointer hover:text-purple-500"
             onClick={() => setMenuOpen(!menuOpen)}
           >
             <div className="flex items-center gap-2">
