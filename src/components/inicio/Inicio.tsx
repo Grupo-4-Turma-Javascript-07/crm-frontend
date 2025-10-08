@@ -212,7 +212,7 @@ function Inicio() {
               </ul>
               <p className="text-shadow-lg/20 text-4xl font-bold text-verde-100">R$ 79/mês</p>
               <p className="text-white text-sm mb-6">por usuário</p>
-              <button className="border-1 border-white text-white text-lg px-30 py-3 rounded-2xl hover:bg-verde-100 hover:border-0 transition">
+              <button className="cursor-pointer border-1 border-white text-white text-lg px-30 py-3 rounded-2xl hover:bg-verde-100 hover:border-0 transition">
                 Assinar
               </button>
             </div>
@@ -230,7 +230,7 @@ function Inicio() {
               </ul>
               <p className="text-shadow-lg/20 text-4xl font-bold text-verde-100">R$ 129/mês</p>
               <p className="text-white text-sm mb-6">por usuário</p>
-              <button className="border-1 border-white text-white text-lg px-30 py-3 rounded-2xl hover:bg-verde-100 hover:border-0 transition">
+              <button className="cursor-pointer border-1 border-white text-white text-lg px-30 py-3 rounded-2xl hover:bg-verde-100 hover:border-0 transition">
                 Assinar
               </button>
             </div>
@@ -250,7 +250,7 @@ function Inicio() {
               </ul>
               <p className="text-shadow-lg/20 text-4xl font-bold text-verde-100">R$ 199/mês</p>
               <p className="text-white text-sm mb-6">por usuário</p>
-              <button className="border-1 border-white text-white text-lg px-30 py-3 rounded-2xl hover:bg-verde-100 hover:border-0 transition">
+              <button className="cursor-pointer border-1 border-white text-white text-lg px-30 py-3 rounded-2xl hover:bg-verde-100 hover:border-0 transition">
                 Assinar
               </button>
             </div>

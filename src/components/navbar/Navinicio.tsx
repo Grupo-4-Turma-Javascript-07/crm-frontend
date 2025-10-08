@@ -9,7 +9,7 @@ function Navbar() {
   const [openSearchInput] = useState(false);
 
   return (
-    <nav className="bg-gradient-to-r from-roxo-300 via-roxo-250 to-roxo-300 flex items-center justify-center drop-shadow-sm py-1.5 px-6 fixed w-full z-1000">
+    <nav className="bg-[#1b1b1b] flex items-center justify-center drop-shadow-sm py-1.5 px-6 fixed w-full z-1000">
       <div className="container flex items-center justify-between w-full">
         <div className="flex flex-1 justify-start">
           <a href='#inicio'>
