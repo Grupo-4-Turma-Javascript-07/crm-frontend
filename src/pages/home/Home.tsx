@@ -143,138 +143,113 @@ export default function Home() {
 
         <div className="flex flex-1 pt-32 px-8 gap-6">
           <main className="flex-1 flex flex-col gap-10">
-            {/* Saudações */}
-            <section>
-              <h1 className="text-white font-bold text-3xl mb-1">
-                Olá, {usuario?.nome}!
-              </h1>
-              <p className="text-gray-400 text-sm">
-                Acompanhe e Gerencie sua Empresa.
-              </p>
-            </section>
+  {/* Saudações */}
+  <section>
+    <h1 className="text-white font-bold text-3xl mb-1">
+      Olá, {usuario?.nome}!
+    </h1>
+    <p className="text-gray-400 text-sm">
+      Acompanhe e Gerencie sua Empresa.
+    </p>
+  </section>
 
-            {/* Cards de estatísticas */}
-            <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-[#2a2a2a] rounded-lg shadow p-6">
-                <div className="flex items-center">
-                  <div className="p-3 rounded-full bg-purple-700 text-white">
-                    <AiOutlineShoppingCart size={25} />
-                  </div>
-                  <div className="ml-4">
-                    <p className="text-gray-400 text-sm">Total Produtos</p>
-                    <p className="text-white text-2xl font-semibold">120</p>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-[#2a2a2a] rounded-lg shadow p-6">
-                <div className="flex items-center">
-                  <div className="p-3 rounded-full bg-green-700 text-white">
-                    <AiOutlineShoppingCart size={25} />
-                  </div>
-                  <div className="ml-4">
-                    <p className="text-gray-400 text-sm">Vendas Hoje</p>
-                    <p className="text-white text-2xl font-semibold">84</p>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-[#2a2a2a] rounded-lg shadow p-6">
-                <div className="flex items-center">
-                  <div className="p-3 rounded-full bg-yellow-600 text-white">
-                    <AiOutlineTeam size={25} />
-                  </div>
-                  <div className="ml-4">
-                    <p className="text-gray-400 text-sm">Clientes Ativos</p>
-                    <p className="text-white text-2xl font-semibold">45</p>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-[#2a2a2a] rounded-lg shadow p-6">
-                <div className="flex items-center">
-                  <div className="p-3 rounded-full bg-red-600 text-white">
-                    <AiOutlineTag size={25} />
-                  </div>
-                  <div className="ml-4">
-                    <p className="text-gray-400 text-sm">Faturamento</p>
-                    <p className="text-white text-2xl font-semibold">R$ 12.500</p>
-                  </div>
-                </div>
-              </div>
-            </section>
+  {/* Cards de métricas */}
+  <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    {[
+      { color: "bg-purple-700", icon: <AiOutlineShoppingCart size={25} />, title: "Total Produtos", value: "120" },
+      { color: "bg-green-700", icon: <AiOutlineShoppingCart size={25} />, title: "Vendas Hoje", value: "84" },
+      { color: "bg-yellow-600", icon: <AiOutlineTeam size={25} />, title: "Clientes Ativos", value: "45" },
+      { color: "bg-red-600", icon: <AiOutlineTag size={25} />, title: "Faturamento", value: "R$ 12.500" },
+    ].map((card, i) => (
+      <div key={i} className="bg-[#2a2a2a] rounded-lg shadow p-6 flex items-center justify-between hover:bg-[#323232] transition">
+        <div className={`p-3 rounded-full text-white ${card.color}`}>{card.icon}</div>
+        <div className="text-right">
+          <p className="text-gray-400 text-sm">{card.title}</p>
+          <p className="text-white text-2xl font-semibold">{card.value}</p>
+        </div>
+      </div>
+    ))}
+  </section>
 
-            {/* Tabela de vendas recentes */}
-            <section className="bg-[#2a2a2a] rounded-md overflow-hidden">
-              <div className="bg-[#222] border-b border-gray-700 text-purple-500 text-center py-2 font-semibold text-lg">
-                Vendas Recentes
-              </div>
-              <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-700 text-gray-300">
-                  <thead className="bg-[#191a1f]">
-                    <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                        Produto
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                        Cliente
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                        Quantidade
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                        Total
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                        Status
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-700">
-                    <tr>
-                      <td className="px-6 py-4">Camiseta</td>
-                      <td className="px-6 py-4">Maria Silva</td>
-                      <td className="px-6 py-4">2</td>
-                      <td className="px-6 py-4">R$ 100</td>
-                      <td className="px-6 py-4">
-                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-700 text-white">
-                          Concluída
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="px-6 py-4">Tênis</td>
-                      <td className="px-6 py-4">João Souza</td>
-                      <td className="px-6 py-4">1</td>
-                      <td className="px-6 py-4">R$ 250</td>
-                      <td className="px-6 py-4">
-                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-600 text-white">
-                          Pendente
-                        </span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </section>
+  {/* Bloco de progresso */}
+  <section className="bg-[#2a2a2a] rounded-lg shadow p-6">
+    <h2 className="text-white font-semibold text-lg mb-4">Progresso Semanal</h2>
 
-            {/* Quick Actions */}
-            <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="flex flex-col items-center justify-center p-4 bg-[#2a2a2a] rounded-md cursor-pointer hover:bg-[#3a3a3a]">
-                <AiOutlineShoppingCart size={25} className="text-purple-500 mb-2" />
-                <span className="text-gray-300 text-sm">Novo Produto</span>
-              </div>
-              <div className="flex flex-col items-center justify-center p-4 bg-[#2a2a2a] rounded-md cursor-pointer hover:bg-[#3a3a3a]">
-                <AiOutlineShoppingCart size={25} className="text-green-500 mb-2" />
-                <span className="text-gray-300 text-sm">Registrar Venda</span>
-              </div>
-              <div className="flex flex-col items-center justify-center p-4 bg-[#2a2a2a] rounded-md cursor-pointer hover:bg-[#3a3a3a]">
-                <AiOutlineTeam size={25} className="text-yellow-500 mb-2" />
-                <span className="text-gray-300 text-sm">Novo Cliente</span>
-              </div>
-              <div className="flex flex-col items-center justify-center p-4 bg-[#2a2a2a] rounded-md cursor-pointer hover:bg-[#3a3a3a]">
-                <AiOutlineTag size={25} className="text-red-500 mb-2" />
-                <span className="text-gray-300 text-sm">Gerenciar Categorias</span>
-              </div>
-            </section>
-          </main>
+    <div className="space-y-4">
+      {[
+        { label: "Atendimentos", percent: "75%", color: "bg-purple-600" },
+        { label: "Vendas", percent: "60%", color: "bg-green-600" },
+        { label: "Novos Cadastros", percent: "45%", color: "bg-yellow-600" },
+        { label: "Resoluções de Tickets", percent: "82%", color: "bg-red-600" },
+      ].map((item, i) => (
+        <div key={i}>
+          <div className="flex justify-between text-sm text-gray-400 mb-1">
+            <span>{item.label}</span>
+            <span>{item.percent}</span>
+          </div>
+          <div className="w-full bg-gray-700 rounded-full h-2">
+            <div className={`${item.color} h-2 rounded-full`} style={{ width: item.percent }}></div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {/* Tabela fictícia */}
+  <section className="bg-[#2a2a2a] rounded-lg shadow overflow-hidden">
+    <div className="bg-[#222] border-b border-gray-700 text-purple-500 text-center py-2 font-semibold text-lg">
+      Atividades Recentes
+    </div>
+    <div className="overflow-x-auto">
+      <table className="min-w-full divide-y divide-gray-700 text-gray-300">
+        <thead className="bg-[#191a1f]">
+          <tr>
+            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Usuário</th>
+            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Ação</th>
+            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Data</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-gray-700">
+          <tr className="hover:bg-[#333] transition">
+            <td className="px-6 py-4">João Silva</td>
+            <td className="px-6 py-4">Atualizou cadastro</td>
+            <td className="px-6 py-4">08/10/2025</td>
+          </tr>
+          <tr className="hover:bg-[#333] transition">
+            <td className="px-6 py-4">Maria Costa</td>
+            <td className="px-6 py-4">Criou novo ticket</td>
+            <td className="px-6 py-4">07/10/2025</td>
+          </tr>
+          <tr className="hover:bg-[#333] transition">
+            <td className="px-6 py-4">Pedro Lima</td>
+            <td className="px-6 py-4">Fechou negócio</td>
+            <td className="px-6 py-4">06/10/2025</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  {/* Quick Actions */}
+  <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div className="flex flex-col items-center justify-center p-4 bg-[#2a2a2a] rounded-md cursor-pointer hover:bg-[#3a3a3a]">
+      <AiOutlineShoppingCart size={25} className="text-purple-500 mb-2" />
+      <span className="text-gray-300 text-sm">Novo Produto</span>
+    </div>
+    <div className="flex flex-col items-center justify-center p-4 bg-[#2a2a2a] rounded-md cursor-pointer hover:bg-[#3a3a3a]">
+      <AiOutlineShoppingCart size={25} className="text-green-500 mb-2" />
+      <span className="text-gray-300 text-sm">Registrar Venda</span>
+    </div>
+    <div className="flex flex-col items-center justify-center p-4 bg-[#2a2a2a] rounded-md cursor-pointer hover:bg-[#3a3a3a]">
+      <AiOutlineTeam size={25} className="text-yellow-500 mb-2" />
+      <span className="text-gray-300 text-sm">Novo Cliente</span>
+    </div>
+    <div className="flex flex-col items-center justify-center p-4 bg-[#2a2a2a] rounded-md cursor-pointer hover:bg-[#3a3a3a]">
+      <AiOutlineTag size={25} className="text-red-500 mb-2" />
+      <span className="text-gray-300 text-sm">Gerenciar Categorias</span>
+    </div>
+  </section>
+</main>
         </div>
       </div>
 
