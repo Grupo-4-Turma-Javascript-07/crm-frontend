@@ -1,75 +1,64 @@
-
 import { useState } from "react";
-import Logo from "../../assets/img/CRM4ULOGO.png"
+import Logo from "../../assets/img/CRM4ULOGO.png";
 import { Link } from "react-router-dom";
-import { ListIcon} from "@phosphor-icons/react";
+import { ListIcon, User } from "@phosphor-icons/react";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
   const [openSearchInput] = useState(false);
 
   return (
-    <nav className="bg-[#1b1b1b] flex items-center justify-center drop-shadow-sm py-1.5 px-6 fixed w-full z-1000">
+    <nav className="bg-[#1b1b1b] flex items-center justify-center drop-shadow-sm py-1.5 px-6 fixed w-full z-[1000]">
       <div className="container flex items-center justify-between w-full">
+        {/* logo */}
         <div className="flex flex-1 justify-start">
-          <a href='#inicio'>
-          <img src={Logo} 
-          width={112} 
-          className="cursor-pointer" alt="Logo CRM4U" 
-          />
+          <a href="#inicio">
+            <img
+              src={Logo}
+              width={112}
+              className="cursor-pointer"
+              alt="Logo CRM4U"
+            />
           </a>
         </div>
 
+        {/* links do meio */}
         <ul className="hidden lg:flex lg:w-1/3 justify-center gap-8 text-xl">
-          <li className="text-gray-300 cursor-pointer relative group hover:brightness-105 hover:text-white">
-            <a href='#inicio'>Home</a>
-            <span
-              className="absolute left-0 bottom-[-4px] w-full h-[2px] bg-white scale-x-0 origin-left transition-transform duration-400 ease-in-out group-hover:scale-x-100"
-            />
-            
-          </li>
-          <li className="text-gray-300 cursor-pointer relative group hover:brightness-105 hover:text-white">
-            <a href="#planos">Planos</a>
-            <span
-              className="absolute left-0 bottom-[-4px] w-full h-[2px] bg-white scale-x-0 origin-left transition-transform duration-400 ease-in-out group-hover:scale-x-100"
-            />
-          </li>
-          <li className="text-gray-300 cursor-pointer relative group hover:brightness-105 hover:text-white">
-            <a href="#sobre">Sobre Nós</a>
-            <span
-              className="absolute left-0 bottom-[-4px] w-full h-[2px] bg-white scale-x-0 origin-left transition-transform duration-400 ease-in-out group-hover:scale-x-100"
-            />
-          </li>
+          {["Home", "Planos", "Sobre Nós"].map((item, i) => (
+            <li
+              key={i}
+              className="text-gray-300 cursor-pointer relative group hover:brightness-105 hover:text-white"
+            >
+              <a
+                href={`#${item === "Home" ? "inicio" : item.toLowerCase().replace(" ", "")}`}
+              >
+                {item}
+              </a>
+              <span className="absolute left-0 bottom-[-4px] w-full h-[2px] bg-white scale-x-0 origin-left transition-transform duration-400 ease-in-out group-hover:scale-x-100" />
+            </li>
+          ))}
         </ul>
 
-        <div className="flex-1 flex justify-end gap-6">
-          <div className="flex">
+        {/* botões à direita */}
+        <div className="flex-1 flex justify-end items-center gap-4">
+          <Link
+            to="/cadastro"
+            className="px-4 py-2 sm:py-1.6 bg-gradient-to-r from-roxo-100 to-roxo-250 font-semibold hover:text-white hover:border-roxo-200 transition-all duration-300 rounded-lg cursor-pointer text-gray-900"
+          >
+            Comece grátis
+          </Link>
 
-            <div
-              className={`transition-all duration-300 ease-in-out ${openSearchInput ? "min-w-[80px] max-w-[400px] opacity-100" : "max-w-0 opacity-0 ml-0"}`
-              }
-            >
-            </div>
-
-          </div>
-          
-          <div className="flex-1 flex justify-end gap-4">
-              <Link
-              to="/cadastro"
-              className="px-4 py-2 bg-gradient-to-r from-roxo-100 to-roxo-250 font-semibold hover:text-white hover:border-roxo-200 transition-all duration-300 rounded-lg cursor-pointer"
-              >
-                Comece grátis
-                </Link>
-            <Link
+          <Link
             to="/login"
-            className="text-gray-300 px-4 py-2 font-semibold hover:text-white transition-all duration-300 border-1 rounded-lg cursor-pointer"
-            >
-              Login
-              </Link>
-                </div>
+            className="flex items-center gap-2 text-gray-300 px-4 py-2 sm:py-1.6 font-semibold hover:text-white transition-all duration-300 border border-gray-600 rounded-lg cursor-pointer"
+          >
+            <User size={20} weight="regular" />
+            <span className="hidden sm:inline">Login</span>
+          </Link>
 
+          {/* menu mobile */}
           <button
-            className="lg:hidden text-azul-claro text-3xl font-bold"
+            className="lg:hidden text-roxo-100 text-3xl font-bold"
             onClick={() => setOpen(!open)}
             aria-label="Abrir menu"
           >
@@ -78,40 +67,61 @@ function Navbar() {
         </div>
       </div>
 
+      {/* menu mobile */}
       {open && (
         <ul className="flex flex-col items-end gap-4 bg-cinza-50 opacity-90 text-xl mt-1.5 px-6 py-4 lg:hidden fixed top-20 right-0 z-40 shadow-md rounded-lg w-52">
           <li className="relative w-full group hover:brightness-105">
-            <a href="#inicio" onClick={() => setOpen(false)} className="block text-right">Home</a>
+            <a
+              href="#inicio"
+              onClick={() => setOpen(false)}
+              className="block text-right"
+            >
+              Home
+            </a>
             <span className="block border-b border-roxo-200 mt-2 w-full" />
           </li>
           <li className="relative w-full group hover:brightness-105">
-            <a href="/inicio#planos" onClick={() => setOpen(false)} className="block text-right">Planos</a>
+            <a
+              href="/inicio#planos"
+              onClick={() => setOpen(false)}
+              className="block text-right"
+            >
+              Planos
+            </a>
             <span className="block border-b border-roxo-200 mt-2 w-full" />
           </li>
           <li className="relative w-full group hover:brightness-105">
-            <Link to="/inicio#sobre" onClick={() => setOpen(false)} className="block text-right">Sobre Nós</Link>
+            <Link
+              to="/inicio#sobre"
+              onClick={() => setOpen(false)}
+              className="block text-right"
+            >
+              Sobre Nós
+            </Link>
             <span className="block border-b border-roxo-200 mt-2 w-full sm:last:border-none" />
           </li>
-          <li className="sm:hidden relative w-full group hover:brightness-105">
-            <a href="#login" onClick={() => setOpen(false)} className="block text-right">
-              Login
-            </a>
-
           <li className="relative w-full group hover:brightness-105">
-            <Link to="/login" onClick={() => setOpen(false)} className="block text-right">
-            Login
+            <Link
+              to="/login"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-2 justify-end text-right"
+            >
+              <User size={20} /> Login
             </Link>
-            </li>
-            <li className="relative w-full group hover:brightness-105">
-              <Link to="/cadastro" onClick={() => setOpen(false)} className="block text-right">
+          </li>
+          <li className="relative w-full group hover:brightness-105">
+            <Link
+              to="/cadastro"
+              onClick={() => setOpen(false)}
+              className="block text-right"
+            >
               Cadastro
-              </Link>
-              </li>
+            </Link>
           </li>
         </ul>
       )}
     </nav>
-  )
+  );
 }
 
 export default Navbar;

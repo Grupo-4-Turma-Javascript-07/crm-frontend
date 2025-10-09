@@ -72,7 +72,7 @@ export default function UsuariosCRM() {
   return (
     <div className="w-full bg-[#121212] flex items-center justify-center min-h-screen p-4">
       <div className="container max-w-6xl">
-        <div className="bg-[#191a1f] rounded-xl shadow-md overflow-hidden">
+        <div className="bg-[#2a2a2a] rounded-xl shadow-md overflow-hidden">
           {/* Cabeçalho */}
           <div className="p-6 border-b border-gray-200">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between">
@@ -114,7 +114,7 @@ export default function UsuariosCRM() {
           {/* Tabela */}
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-[#191a1f]">
+              <thead className="bg-[#2a2a2a]">
                 <tr>
                   <th className="px-6 py-3 text-left text-xs font-medium text-purple-500 uppercase tracking-wider">Nome</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-purple-500 uppercase tracking-wider">Cargo</th>
@@ -123,7 +123,7 @@ export default function UsuariosCRM() {
                   <th className="px-6 py-3 text-right text-xs font-medium text-purple-500 uppercase tracking-wider">Ações</th>
                 </tr>
               </thead>
-              <tbody className="bg-[#191a1f] divide-y divide-gray-200">
+              <tbody className="bg-[#2a2a2a] divide-y divide-gray-200">
                 {usuariosFiltrados.map((usuario) => (
                   <tr key={usuario.id} className="transition-colors duration-150">
                     <td className="px-6 py-4 whitespace-nowrap">

@@ -19,29 +19,29 @@ function Inicio() {
         className="bg-background flex flex-col items-center scroll-mt-44 mt-20 font-family-Source"
       >
         {/* SEÇÃO INICIAL */}
-        <div className="container grid grid-cols-2 text-nav-footer pt-10">
+        <div className="container grid grid-cols-1 md:grid-cols-2 text-nav-footer pt-10 px-6 md:px-0 gap-10 min-h-[80vh]">
           {/* Texto à esquerda */}
-          <div className="flex flex-col gap-3 justify-center py-4 px-15">
-            <h2 className="text-5xl font-bold text-shadow-lg/15 text-branco mb-1">
+          <div className="flex flex-col gap-3 justify-center items-center text-center md:items-start md:text-left transition-all duration-500">
+            <h2 className="text-4xl md:text-5xl font-bold text-shadow-lg/15 text-branco mb-1">
               O CRM nº1 do <span className="text-roxo-100">Brasil.</span>
             </h2>
-            <p className="text-3xl font-semibold text-branco">
+            <p className="text-2xl md:text-3xl font-semibold text-branco max-w-xl">
               Administre suas vendas, produtos e categorias em uma interface{" "}
               <span className="text-roxo-100">moderna</span> e{" "}
               <span className="text-roxo-100">fácil</span> de usar
             </p>
-            <div className="flex gap-4 mt-4">
-              <button className="text-gray-300 py-3 px-15 border-white shadow-lg text-lg rounded-lg hover:text-white  transition-all duration-300 border-1 cursor-pointer">
+            <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4 mt-6">
+              <button className="text-gray-300 py-3 px-8 border-white shadow-lg text-lg rounded-lg hover:text-white transition-all duration-300 border cursor-pointer">
                 <a href="#teste">Teste Grátis</a>
               </button>
-              <button className="py-3 px-15 border border-transparent shadow-lg text-lg rounded-lg text-branco bg-gradient-to-r from-roxo-300 to-roxo-250 hover:from-roxo-100 hover:to-roxo-250 hover:text-roxo-300 transition-all duration-300 cursor-pointer">
+              <button className="py-3 px-8 border border-transparent shadow-lg text-lg rounded-lg text-branco bg-gradient-to-r from-roxo-300 to-roxo-250 hover:from-roxo-100 hover:to-roxo-250 hover:text-roxo-300 transition-all duration-300 cursor-pointer">
                 <a href="#agendar">Agendar demo</a>
               </button>
             </div>
           </div>
 
           {/* Imagem à direita */}
-          <div className="flex justify-center">
+          <div className="hidden md:flex justify-center">
             <img 
               src={imglayout} 
               alt="Layout do CRM" 
