@@ -5,7 +5,6 @@ import { ListIcon, User } from "@phosphor-icons/react";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
-  const [openSearchInput] = useState(false);
 
   return (
     <nav className="bg-[#1b1b1b] flex items-center justify-center drop-shadow-sm py-1.5 px-6 fixed w-full z-[1000]">
