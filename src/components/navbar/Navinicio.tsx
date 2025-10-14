@@ -29,7 +29,7 @@ function Navbar() {
               className="text-gray-300 cursor-pointer relative group hover:brightness-105 hover:text-white"
             >
               <a
-                href={`#${item === "Home" ? "inicio" : item.toLowerCase().replace(" ", "")}`}
+                  href={`#${item === "Home" ? "inicio" : item === "Sobre Nós" ? "sobre" : item.toLowerCase().replace(" ", "")}`}
               >
                 {item}
               </a>
@@ -90,13 +90,13 @@ function Navbar() {
             <span className="block border-b border-roxo-200 mt-2 w-full" />
           </li>
           <li className="relative w-full group hover:brightness-105">
-            <Link
-              to="/inicio#sobre"
+            <a
+              href="/inicio#sobre"
               onClick={() => setOpen(false)}
               className="block text-right"
             >
               Sobre Nós
-            </Link>
+            </a>
             <span className="block border-b border-roxo-200 mt-2 w-full sm:last:border-none" />
           </li>
           <li className="relative w-full group hover:brightness-105">

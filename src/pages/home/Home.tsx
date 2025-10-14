@@ -82,6 +82,7 @@ export default function Home() {
               onClick={() => openModal("clientes")}
             >
               <AiOutlineTeam size={iconSize} /> {menuOpen && <span>Clientes</span>}
+
             </button>
             <Link
               to="/categorias"
@@ -105,7 +106,7 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col gap-4 text-gray-400">
-          <Link to="/" className="flex items-center gap-3 hover:text-purple-500">
+          <Link to="/Inicio" className="flex items-center gap-3 hover:text-purple-500">
             <BiBuilding size={iconSize} /> {menuOpen && <span>Sobre a Empresa</span>}
           </Link>
           <Link to="/help" className="flex items-center gap-3 hover:text-purple-500">

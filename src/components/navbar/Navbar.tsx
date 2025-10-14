@@ -16,7 +16,7 @@ function Navbar() {
     <header className="fixed top-0 left-0 w-full flex items-center justify-between bg-[#191a1f]/95 backdrop-blur-md border-b border-gray-800 p-4 z-[999] shadow-lg">
       {/* Logo */}
       <div className="flex items-center gap-3">
-        <Link to="/" className="flex items-center">
+        <Link to="/Home">
           <img
             src={logo}
             alt="Logo CRM4U"
