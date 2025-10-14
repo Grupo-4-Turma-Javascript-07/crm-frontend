@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { MagnifyingGlassIcon } from "@phosphor-icons/react";
+
 
 const categoriesData = [
   {
@@ -32,6 +34,11 @@ const faqData = [
 const Help: React.FC = () => {
   const [search, setSearch] = useState("");
 
+  useEffect(() => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}, []);
+
+
   const filteredCategories = categoriesData.filter((category) =>
     category.title.toLowerCase().includes(search.toLowerCase())
   );
@@ -42,15 +49,20 @@ const Help: React.FC = () => {
       {/* Main */}
       <main className="container mx-auto px-4 py-12 pt-20 text-purple-500">
         {/* Search Bar */}
-        <div className="mb-8">
+        <div className="mb-8 relative">
           <input
-            type="text"
-            placeholder="Procure pelo seu problema..."
-            className="text-purple-500 w-full p-4 text-lg border rounded-lg shadow focus:ring-2 focus:ring-purple-500 focus:outline-none"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
+          type="text"
+          placeholder="Procure pelo seu problema..."
+          className="text-purple-500 w-full pl-12 p-4 pr-12 text-lg border rounded-lg shadow focus:ring-2 focus:ring-purple-500 focus:outline-none"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
           />
-        </div>
+          <MagnifyingGlassIcon
+          size={22}
+          className="absolute left-4 top-1/2 -translate-y-1/2 text-purple-500 cursor-pointer"
+          />
+          </div>
+
 
         {/* Categories */}
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

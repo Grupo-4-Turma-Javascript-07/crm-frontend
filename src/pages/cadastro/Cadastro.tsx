@@ -28,13 +28,31 @@ function Cadastro() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [photoUrl, setPhotoUrl] = useState("");
+  const [erroSenha, setErroSenha] = useState("");
 
   function handleLoginClick() {
     navigate("/login");
   }
 
+  function validarSenha(senha: string) {
+  // regex: 1 letra minúscula, 1 maiúscula, 1 número e 1 caractere especial, mínimo 8 caracteres
+  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+
+  if (!regex.test(senha)) {
+    setErroSenha(
+      "A senha deve conter ao menos 8 caracteres, com letra maiúscula, minúscula, número e caractere especial."
+    );
+  } else {
+    setErroSenha("");
+  }
+}
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (erroSenha) {
+      ToastAlerta("A senha não atende aos requisitos!", "erro");
+      return;
+    }
     if (usuario.senha !== confirmarSenha) {
       ToastAlerta("As senhas não conferem!", "erro");
       return;
@@ -161,10 +179,30 @@ function Cadastro() {
                   placeholder="Senha"
                   className="block w-full p-4 text-lg rounded-lg bg-black border border-roxo-200 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-roxo-100 focus:border-roxo-100 transition-all duration-300"
                   value={usuario.senha}
-                  onChange={e => setUsuario({ ...usuario, senha: e.target.value })}
+                  onChange={e => {
+                    const senha = e.target.value;
+                    setUsuario({ ...usuario, senha })
+                    validarSenha(senha);
+                  }}
                   required
                 />
-              </div>
+              
+
+              {erroSenha && (
+                <p className="text-red-500 text-sm mt-2 text-left">{erroSenha}</p>
+                )}
+                <div className="text-xs text-gray-400 mt-2 text-left">
+                  <p className="mb-1">Sua senha deve conter:</p>
+                  <ul className="list-disc list-inside space-y-1">
+                    <li>Letra maiúscula</li>
+                    <li>Letra minúscula</li>
+                    <li>Número</li>
+                    <li>Caractere especial</li>
+                    <li>Mínimo de 8 caracteres</li>
+                    </ul>
+                    </div>
+                
+                </div>
 
               {/* Confirmar senha */}
               <div className="pb-2 pt-4">
